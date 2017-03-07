@@ -3,6 +3,42 @@
     <head>
         <meta charset="UTF-8">
         <title>Bonjour le Monde</title>
+        <style>
+            td {
+                border: dashed 1px;
+                width: 33.33%;
+                height: 33.33%;
+            }
+
+            tr {
+                height: 33.33%;
+            }
+
+            table {
+                width: 400px;
+                height: 90px;
+                border-collapse:collapse;
+            }
+
+            #centrer {
+                text-align: center;
+            }
+
+            .test{
+                background-color:blue;
+                color: white;
+            }
+
+            .bourrin{
+                background-color: red;
+                list-style-type: none;
+            }
+
+            #formulaire{
+                text-align: center;
+                background-image: url(http://sniteartmuseum.nd.edu/assets/166204/original/ferrari.jpg);background-size: cover;
+            }
+        </style>
     </head>
     <body>
         <!--Les Titres-->
@@ -19,20 +55,38 @@
         <p>Lorem ipsum dolor sit amet, <b>consectetur adipisicing elit</b>. Iusto animi, totam sapiente repudiandae modi nam odit et repellendus <i>necessitatibus</i> illum cupiditate, voluptatibus rerum labore provident molestiae saepe quis eius est!</p>
 
         <!--Liste ordonnée-->
-        <ol style="background-color:blue;color: white;">
+        <ol class="test">
             <li>Pierre</li>
             <li><i>Paul</i></li>
             <li>Jacques</li>
         </ol>
 
         <!--Liste non ordonnée-->
-        <ul style="background-color: red;list-style-type: none">
+        <ul class="bourrin">
             <li>John</li>
             <li><b>Paul</b></li>
             <li>George</li>
         </ul>
 
-        <form action="about.html" method="get" style="text-align: center;background-image: url(http://sniteartmuseum.nd.edu/assets/166204/original/ferrari.jpg);background-size: cover;" >
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td ></td>
+                <td id="centrer">Mike</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <form id="formulaire" action="about.html" method="get">
             <fieldset>
                 <legend>Mike</legend>
                 <p>Nom</p>
