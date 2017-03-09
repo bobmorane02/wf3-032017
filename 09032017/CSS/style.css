@@ -1,36 +1,72 @@
 /* initialisation des style CSS du navigateur */
-*{
-    margin: 0;
-    padding: 0;
-}
+    *{
+        margin: 0;
+        padding: 0;
+    }
 
-html{
-    font-size: 62.5%;
-}
+    html{
+        font-size: 62.5%;
+    }
 
-body{
-    font-size: 1.5rem;
-}
+    body{
+        font-size: 1.5rem;
+    }
 
-a{
-    text-decoration: none;
-}
+    a{
+        text-decoration: none;
+    }
 
-img{
-    max-width: 100%;
-}
+    img{
+        max-width: 100%;
+    }
+
+    section{
+        padding: 6rem 0;
+    }
+
+    h1{
+    padding-top: 3rem;
+    font-size: 6rem;
+    text-transform: uppercase;
+    }
+
+    h2{
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 3rem;
+        font-size: 4rem;
+    }
+
+    h3{
+        text-transform: uppercase;
+        margin-bottom: 3rem;
+        font-size: 2.5rem;
+    }
+
+    aside{
+        padding: 1.5rem;
+        background: #233140;
+    }
 /* ------------------------------------------ */
-
+/* largeur max */
+    nav ul,#portfolio,#about p,#contacts,footer section{
+        max-width: 95rem;
+        margin: auto; /* centrage */
+    }
+/* ----------- */
 header{
     color: white;
     text-align: center;
-    background: #18BC9C; 
+    background: #18BC9C;
+    padding-bottom: 6rem;
 }
 
 nav{
+    padding: 3rem;
     text-transform: uppercase;
     background: #2c3e50;
     text-align: left;
+    margin-bottom: 6rem;
 }
 
 nav a{
@@ -43,3 +79,83 @@ li{
     margin-right: 1rem;
 }
 
+header p{
+    font-size: 2.5rem;
+}
+
+#portfolio{
+    text-align: center;
+}
+
+#portfolio a{
+    display: none;
+}
+
+#portfolio article{
+    display: inline-block;
+    width: 30%;
+    margin: 1rem;
+}
+
+#about{
+    color: white;
+    background: #18BC9C;
+    text-align: center;
+}
+
+#about p{
+    column-count: 2;
+    text-align: justify;
+    margin-bottom: 4rem;
+}
+
+#about a{
+    color: white;
+    border: .2rem solid white;
+    padding: 1rem 1.5rem;
+    border-radius: .6rem;
+}
+
+input,textarea{
+    display: block;
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem;
+    font-size: 2rem;
+    border: none;
+    border-bottom: .1rem solid lightgrey;
+}
+
+textarea{
+    min-height: 20rem;
+}
+
+[type="submit"]{
+    width: 10rem;
+    display: inline-block;
+    background: #18bc9c;
+    color: white;
+    font-weight: bold;
+    border-radius: .5rem;
+    margin-left: 3rem;
+}
+
+footer{
+    color: white;
+    text-align: center;
+    background: #2c3e50;
+}
+
+footer article{
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+footer p{
+    font-size: 2rem;
+}
+
+[href="https://google.fr"]{
+    color: #18bc9c;
+}
