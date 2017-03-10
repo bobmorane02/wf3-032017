@@ -1,0 +1,216 @@
+/* initialisation des style CSS du navigateur */
+
+    @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900');
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    html{
+        font-size: 62.5%;
+    }
+
+    body{
+        font-size: 1.5rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    a{
+        text-decoration: none;
+        -webkit-transition: all 0.5s; /* Permet d'animer les transitions sur toutes les balises <a> */
+    }
+
+    img{
+        max-width: 100%;
+    }
+
+    section{
+        padding: 6rem 0;
+    }
+
+    h1{
+    padding-top: 3rem;
+    font-size: 6rem;
+    text-transform: uppercase;
+    position: relative;
+    font-weight: bold;
+    }
+
+    h2{
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 3rem;
+        font-size: 4rem;
+    }
+
+    h3{
+        text-transform: uppercase;
+        margin-bottom: 3rem;
+        font-size: 2.5rem;
+    }
+
+    aside{
+        padding: 1.5rem;
+        background: #233140;
+    }
+
+/* ------------------------------------------ */
+/* largeur max */
+    nav ul,main section:first-of-type,main section:nth-child(2) p,main section:last-of-type,footer section,h1{
+        max-width: 95rem;
+        margin: auto; /* centrage */
+    }
+/* ----------- */
+header{
+    color: white;
+    text-align: center;
+    background: #18BC9C;
+    padding-bottom: 6rem;
+}
+
+nav{
+    padding: 3rem;
+    text-transform: uppercase;
+    background: #2c3e50;
+    text-align: right;
+    margin-bottom: 6rem;
+}
+
+nav ul{
+    position: relative;
+}
+
+nav li:first-of-type{
+    position: absolute;
+    left: 0;   
+}
+
+nav a{
+    color: white;
+    font-weight: bold;
+}
+
+li{
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+header p{
+    font-size: 2.5rem;
+    margin-top: 2rem;
+}
+
+main section:first-of-type{
+    text-align: center;
+}
+
+main section:first-of-type a{
+    background: rgba(24, 188, 156, .9);
+    color: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    font-size: 5rem;
+}
+
+main section:first-of-type a:hover{
+    opacity: 1;
+}
+
+main section:first-of-type article{
+    display: inline-block;
+    width: 30%;
+    margin: 1rem;
+    position: relative;
+}
+
+main section:nth-child(2){
+    color: white;
+    background: #18BC9C;
+    text-align: center;
+}
+
+main section:nth-child(2) p{
+    column-count: 2;
+    text-align: justify;
+    margin-bottom: 4rem;
+}
+
+main section:nth-child(2) a{
+    color: white;
+    border: .2rem solid white;
+    padding: 1rem 1.5rem;
+    border-radius: .6rem;
+}
+
+input,textarea{
+    display: block;
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem;
+    font-size: 2rem;
+    border: none;
+    border-bottom: .1rem solid lightgrey;
+}
+
+textarea{
+    min-height: 20rem;
+}
+
+[type="submit"]{
+    width: 10rem;
+    display: inline-block;
+    background: #18bc9c;
+    color: white;
+    font-weight: bold;
+    border-radius: .5rem;
+    margin-left: 3rem;
+}
+
+footer{
+    color: white;
+    text-align: center;
+    background: #2c3e50;
+}
+
+footer article{
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+footer p{
+    font-size: 2rem;
+}
+
+[href="https://google.fr"]{
+    color: #18bc9c;
+}
+
+/*  Ajouter un pseudo-élément à la fin de la balise <h1> */
+
+h1:before{
+    content: "\f005";
+    display: block;
+    position: absolute;
+    background: #18bc9c;
+    top: 9.1rem;
+    left: 49%;
+    font-family: FontAwesome;
+    font-size: 3rem;
+    padding: 0.8rem;
+    margin: auto;
+}
+
+h1:after{
+    /* Ajouter du contenu dans le pseudo-élement */
+    content: "";
+    display: block;
+    width: 20%;
+    height: .5rem;
+    margin: 1rem auto;
+    background:white;
+}
