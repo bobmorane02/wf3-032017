@@ -1,38 +1,16 @@
-/* La section fait le tour de l'écran */
-
-/* Définir les keyframe */
-@keyframes moveSection {
-    0%      {top:0; left:0;}
-    25%     {top:0; left:100%;-webkit-transform: translate(-100%,0%);transform: translate(-100%,0%)}
-    50%     {top:100%;left:100%;-webkit-transform: translate(-100%,-100%);transform: translate(-100%,-100%)}
-    75%     {top:100%;left:0;-webkit-transform: translate(0%,-100%);transform: translate(0%,-100%)}
-    100%    {top:0; left:0;}
-}
 *{
     padding: 0;
     margin: 0;
 }
 
 section{
-    height: 5rem;
-    width: 5rem;
-    background: red;
     position: absolute;
-    top: 0;
-    left: 0;
-/* Nom de l'animation à appliquer */
-    -webkit-animation-name: moveSection;
-    animation-name: moveSection;
-/* Durée de l'animation */
-    -webkit-animation-duration: 2s;
-    animation-duration: 2s;
-/* Courbe de l'animation */
-    -webkit-animation-timing-function: linear;
-    animation-timing-function: linear;
-/* Nombre de répétition de l'animation */
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-/* Sens de l'animation */
-    -webkit-animation-direction: reverse;
-    animation-direction: reverse;
+    width:  100%;
+    height: 100%;
+    background: #1e5799;
+background: -moz-linear-gradient(-45deg,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
+background: -webkit-linear-gradient(-45deg,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+background: linear-gradient(135deg,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 );
+
 }
