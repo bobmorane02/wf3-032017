@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.5rem;
+}
+
+section{
+    margin: 4rem;
+    padding: 2rem;
+    border: .1rem red solid;
+    height: 15rem;
+    border-radius: 1rem;
+}
+
+article{
+    width: 5rem;
+    height: 5rem;
+    background: black;
+    color: white;
+}
+
+/* Tranformations 2D */
+section:first-child article{
+    -ms-transform: translate(2rem,2rem);
+    -webkit-transform: translate(2rem,2rem);
+    transform: translate(2rem,2rem);
+}
+
+section:nth-child(2) article{
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+section:nth-child(3) article{
+    -ms-transform: skewX(45deg);
+    -webkit-transform: skewX(45deg);
+    transform: skewX(45deg);
+}
+
+section:nth-child(4) article{
+    -ms-transform: skewY(45deg);
+    -webkit-transform: skewY(45deg);
+    transform: skewY(45deg);
+}
+
+section:nth-child(5) article{
+    -ms-transform: scale(3,5);
+    -webkit-transform: scale(3,5);
+    transform: scale(3,5);
+}
+/* Tranformations 3D */
+section:nth-child(6) article{
+    -webkit-transform: rotateX(45deg);
+    transform: rotateX(45deg);
+}
+
+section:nth-child(7) article{
+    -webkit-transform: rotateY(45deg);
+    transform: rotateY(45deg);
+}
+
+section:nth-child(8) article{
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+
+section:nth-child(9) article{
+    border-radius: 50%;
+}
+
+/* utilisation de translate pour caler des balises */
+
+section:nth-child(10) article{
+    width: 15rem;
+    height: 15rem;
+    border: .1rem solid red;
+    display: inline-block;
+    vertical-align: top;
+}
+
+section:nth-child(10) article p{
+    position: relative;
+    border: .1rem white solid;
+    padding: .2rem;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    
+}

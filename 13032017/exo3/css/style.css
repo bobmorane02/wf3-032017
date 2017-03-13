@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.5rem;
+}
+
+a{
+    font-size: 4rem;
+    text-decoration: none;
+    color: white;
+    background: black;
+    padding: 1rem;
+    -webkit-transition: background 2s,color 4s;
+    transition: background 2s,color 4s;
+}
+
+a:hover{
+    color: red;
+    background: lightgrey;
+}
+
+section{
+    margin: 5rem;
+    background: greenyellow;
+    width: 10rem;
+    height: 10rem;
+    /* Effectuer une transition sur toutes les propriétés */
+    -webkit-transition: all 2s;
+    transition: all 2s;
+
+    /* Modifier la courbe d'animation */
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+
+    /* Ajouter un délai avant la transition */
+    -webkit-transition-delay: 1s;
+    transition-delay: 1s;
+}
+
+section:hover{
+    background: dodgerblue;
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .2s;
+    border-left: 0 solid red;
+    margin-left: 5rem;
+}
+
+li:hover{
+    font-size: 2rem;
+    padding-left: .5rem;
+    color: red;
+    border-left: .5rem solid red;
+}
