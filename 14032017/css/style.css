@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
 @keyframes anim {
-    0% { padding-top: 0; }
-    100% { padding-top: 1rem; }
+    0% { transform: translateY(0); }
+    50% { transform: translateY(1rem); }
+    100% { transform: translateY(0); }
 }
 
 /* ------- Initialisation de la page --------- */
@@ -111,7 +112,9 @@ h1 + a{
     background: #349aa6;
     margin-bottom: 8rem;
     border-radius: 50%;
-    transition: translate 2s;
+    animation-name: anim;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
 }
 
 a img{
