@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+
+@-webkit-keyframes anim {
+    0% { -webkit-transform: translateY(0);transform: translateY(0); }
+    50% { -webkit-transform: translateY(1rem);transform: translateY(1rem); }
+    100% { -webkit-transform: translateY(0);transform: translateY(0); }
+}
+
+@keyframes anim {
+    0% { -webkit-transform: translateY(0);transform: translateY(0); }
+    50% { -webkit-transform: translateY(1rem);transform: translateY(1rem); }
+    100% { -webkit-transform: translateY(0);transform: translateY(0); }
+}
+
+/* ------- Initialisation de la page --------- */
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: #349aa6;
+}
+    /* Appliquer deux design différents sur h1 */
+    h1{
+        font-size: 1.5rem;
+        line-height: 1.8em;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin: 0 auto 4rem auto;
+        max-width: 50rem;
+        padding: 0 1rem 0 1rem;
+    }
+
+    h1 b{
+        font-size: 2em; /* fonte 2 fois plus grosse */
+        display: block;
+    }
+
+    span{
+        text-transform: lowercase;
+    }
+
+    h2,h3{
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 2.2rem;
+    }
+
+    section{
+        padding: 4rem 2rem;
+    }
+
+    p{
+        padding: 2rem 0;
+    }
+
+    figure{
+        padding: 2rem 0;
+    }
+
+    img{
+        max-width: 100%;
+    }
+
+    iframe{
+        width: 90%;
+        height: 45rem;
+        border: none;
+    }
+/* ---------- Fin d'initialisation -------------- */
+
+/* Style du header */
+header{
+    color: white;
+    /* image de fond en parallaxe */
+    background-image: url(../img/img-couverture-iphone.jpg);
+    /* Positionner l'image de fond */
+    background-position: top;
+    /* Modifier la taille de l'image */
+    background-size: 120%;
+    /* Fixer l'image de fond */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+nav + img{
+    margin-top: 8rem;
+}
+nav{
+    background: #002a35;
+    padding: 1rem;
+    margin-bottom: 4rem;
+    position: fixed;
+    width: 100%;
+    z-index: 20;
+}
+
+li{
+    display: inline-block;
+    width: 45%;
+}
+
+    /* Slectionner une balise grâce à sont attribut */
+    [src="img/logo-GRT-gaz-blanc.png"]{
+        width: 15rem;
+        margin-bottom: 4rem;
+    }
+
+nav li:first-of-type{
+    text-align: left;
+}
+
+nav li:last-of-type{
+    text-align: right;
+}
+
+/* Selectionner une balise suivante */
+h1 + a{
+    width: 5rem;
+    height: 5rem;
+    display: inline-block;
+    background: #349aa6;
+    margin-bottom: 8rem;
+    border-radius: 50%;
+	-webkit-animation-name: anim;
+    animation-name: anim;
+	-webkit-animation-duration: 1s;
+    animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+a img{
+    /* Centrage vertical de l'image (à vue) */
+    padding-top: 1rem;
+}
+    
+section:nth-child(2),section:nth-child(4){
+    color: white;
+    background-image: url(../img/img-foule.jpg);
+    background-position: center;
+    background-attachment: fixed;
+}
+
+section:nth-child(3),section:nth-child(7),footer{
+    color: white;
+    background: #349aa6;
+}
+
+section:nth-child(7) figure{
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+}
+
+/* CallToAction */
+.callToAction{
+    color: white;
+    border: .1rem solid white;
+    display: inline-block;
+    padding: 1rem;
+    border-radius: .5rem;
+    margin-top: 2rem;
+    text-align: left;
+    /* Bloquage de la taille max des boutons */
+    max-width: 25rem;
+}
+
+.callToAction.blue{
+    color: #349aa6;
+    border-color: #349aa6; 
+}
+
+.callToAction:before{
+	content: url(../img/puce-bas-blanche.png);
+	display: block;
+	height: 3rem;
+	width: 3rem;
+	float: left;
+	margin-right: 1.5rem;
+}
+
+.callToAction.blue:before{
+	content: url(../img/puce-droite-bleu.png);
+}
+/* Annuler le flottement */
+.callToAction:after{
+	clear: both;
+}
+
+[src="img/logo-salon-des-maires.png"]{
+    width: 10rem;
+}
+
+section:nth-child(6){
+    position: relative;
+    overflow: hidden;
+}
+
+section:nth-child(6) article{
+    position: relative;
+    color: white;
+    padding: 4rem 2rem;
+    margin: 5rem  auto 2rem auto;
+    background: rgba(0,0,0,.7);
+    z-index: 10;
+}
+
+section:nth-child(6) a{
+    display: inline-block;
+    color: white;
+    margin-top: 2rem;
+}
+
+article + img{
+    width: 15rem;
+    margin-bottom: 4rem;
+}
+
+footer{
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: auto;
+}
+
+/* Les réquetes Média */
+
+    /* Ecran d'une taille minimale de 550px */
+    @media screen and (min-width: 550px){
+        /* Style reset */
+        h1{
+            font-size: 2rem;
+        }
+
+        h2,h3{
+            font-size: 2.7rem;
+        }
+
+        section{
+            padding: 8rem 4rem;
+        }
+        /* Header */
+        header{
+            background-image: url(../img/img-couverture-desktop.jpg);
+            background-size: 167%;
+            padding-bottom: 13rem;
+        }
+    }
+
+    /* Ecran  d'une taille de 750px */
+
+    @media screen and (min-width:750px){
+
+        header{
+            background-size: 121%;
+        }
+        /* Reformatage section Solution */
+        section:nth-child(3) figure{
+            display: inline-block;
+            vertical-align: top;
+            width: 32%;
+            margin-top: 2rem;
+        }
+
+        /* Reformatage section Chiffre */
+        section:nth-child(7) figure{
+            width: 32%;
+            margin-top: 2rem;
+        }
+
+       /* Reformatage section Présentation */
+        section:last-child article{
+            text-align: left;
+            display: inline-block;
+            width: 49%;
+            padding: 0 1rem 0 0;
+        }        
+
+        section:last-child article:last-of-type{
+            padding: 0 0 0 1rem;
+        }
+    }
+
+    /* Ecran  d'une taille de 950px */
+
+    @media screen and (min-width: 950px){
+
+        header{
+            background-size: 121%;
+        }
+
+
+        /* Reset */
+        .siteMaxWidth{
+            max-width: 95rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        video{
+            width: 100%;
+            height: auto;
+        }
+    }
