@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+
+@-webkit-keyframes anim {
+    0% { -webkit-transform: translateY(0);transform: translateY(0); }
+    50% { -webkit-transform: translateY(1rem);transform: translateY(1rem); }
+    100% { -webkit-transform: translateY(0);transform: translateY(0); }
+}
+
 @keyframes anim {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(1rem); }
-    100% { transform: translateY(0); }
+    0% { -webkit-transform: translateY(0);transform: translateY(0); }
+    50% { -webkit-transform: translateY(1rem);transform: translateY(1rem); }
+    100% { -webkit-transform: translateY(0);transform: translateY(0); }
 }
 
 /* ------- Initialisation de la page --------- */
@@ -112,8 +119,11 @@ h1 + a{
     background: #349aa6;
     margin-bottom: 8rem;
     border-radius: 50%;
+	-webkit-animation-name: anim;
     animation-name: anim;
-    animation-duration: 2s;
+	-webkit-animation-duration: 1s;
+    animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
 }
 
@@ -153,6 +163,23 @@ section:nth-child(7) figure{
 .callToAction.blue{
     color: #349aa6;
     border-color: #349aa6; 
+}
+
+.callToAction:before{
+	content: url(../img/puce-bas-blanche.png);
+	display: block;
+	height: 3rem;
+	width: 3rem;
+	float: left;
+	margin-right: 1.5rem;
+}
+
+.callToAction.blue:before{
+	content: url(../img/puce-droite-bleu.png);
+}
+/* Annuler le flottement */
+.callToAction:after{
+	clear: both;
 }
 
 [src="img/logo-salon-des-maires.png"]{
