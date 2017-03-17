@@ -62,7 +62,7 @@ div{
     left: 0;
     width: 100%;
     height: 100%;
-    background: #f05f40;
+    background: rgba(240, 95, 64, 0.7);
     opacity: 0;
 }
 
@@ -263,7 +263,7 @@ figcaption{
  }
 
 div:hover{
-    opacity: .7;
+    opacity: 1;
  }
 
 span{
