@@ -278,3 +278,11 @@ span{
 b{
     display: block;
 }
+
+main section:nth-child(4) article:first-of-type{
+    float: left;
+}
+
+main section:nth-child(4) article{
+    max-width: 33.333%;
+}
