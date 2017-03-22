@@ -53,17 +53,24 @@ section{
     margin-bottom: 8rem;
 }
 
-h2{
-    background: #0b0b2f;
-    color: white;
-    padding: 1rem;
-    vertical-align: top;
-    font-size: 1.7rem;
-    margin-bottom: 2rem;
+h1{
+    color: #0b0b2f;
+    text-align: center;
+    line-height: 3rem;
 }
 
-article{
-    margin-bottom: 2rem;
+h2{  
+    color: white;
+    vertical-align: top;
+    font-size: 1.7rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+h2 span{
+    background: #0b0b2f;
+    padding: 1rem;
+    display: block;
 }
 
 figcaption{
@@ -93,6 +100,7 @@ textarea,input:not([type="submit"]){
 
 textarea{
     line-height: initial;
+    padding-top: 1rem;
     height: 12rem;
     resize: none;
 }
@@ -100,12 +108,13 @@ textarea{
 iframe{
     border: none;
     width: 100%;
-    height: 30rem;
+    height: 27rem;
 }
 
 figure{
     display: inline-block;
     position: relative;
+    margin-bottom: 2rem;
 }
 
 p,input,textarea{
@@ -115,17 +124,30 @@ p,input,textarea{
 
 /* -------------- */
 
-nav li:not(:first-child){
+header nav li:not(:first-child){
     display: inline-block;
     font-size: 1.3rem;
     padding: 0 .5rem;
 }
 
-nav li:first-child{
+header nav li:first-child{
     display: block;
     font-size: 3rem;
     font-weight: bold; 
     margin-bottom: 1rem;
+}
+
+footer nav li:not(:last-child){
+    display: inline-block;
+    font-size: 1.3rem;
+    padding: 0 .5rem;
+}
+
+footer nav li:last-child{
+    display: block;
+    font-size: 3rem;
+    font-weight: bold; 
+    margin-top: 1rem;
 }
 
 [src="img/profil.jpg"]{
@@ -137,7 +159,7 @@ nav li:first-child{
 }
 
 h2 + p{
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
 }
 
 figure img{
@@ -166,6 +188,10 @@ figure img{
         line-height: 6rem;
     }
 
+    h1{
+        text-align: left;
+        margin: 2rem 0;
+    }
 
     nav li:first-child{
         display: inline-block;
@@ -187,6 +213,11 @@ figure img{
     [src="img/profil.jpg"]{
         float: left;
     }
+
+    [src="img/profil.jpg"] + p:after{
+        content: "";
+        clear:both;
+    }
     
     main section:first-of-type{
         margin-bottom: 0;
@@ -202,9 +233,10 @@ figure img{
         text-align: left;
     }
 
-    article {
+    figure {
         display: inline-block;
-        width: 24%;
+        width: 24.5%;
+        margin-bottom: .5rem;
     }
 
     form{
@@ -215,13 +247,14 @@ figure img{
 
     iframe{
         display: inline-block;
-        width: 49%;
-        padding-top: 4rem;        
+        width: 49%;      
     }
 
-    footer ul li:first-child{
+    footer ul li:last-child{
+        display: inline-block;
         position: absolute;
         right: 0;
+        margin-top: 0;
     }
 
     footer nav{
@@ -244,5 +277,14 @@ figure img{
         padding-right: 0;
         padding-left: 2rem;
     }
-    
+
+    h2{  
+        text-align: left;
+    }
+
+h2 span{
+        background: #0b0b2f;
+        padding: 1rem 1.3rem;
+        display: initial;
+    }    
 }
