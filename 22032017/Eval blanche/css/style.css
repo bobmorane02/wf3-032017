@@ -1,0 +1,248 @@
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700|Roboto:400,700');
+
+/* Initialisation*/
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.5rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+header,footer{
+    padding: 2rem 0;
+    color: white;
+    text-align: center;
+}
+
+header{
+    background-image: url("../img/back.jpg");
+    background-size: cover;
+}
+
+footer{
+    background: #0b0b2f;
+}
+
+img{
+    max-width: 100%;
+}
+
+main{
+    max-width: 75rem;
+    padding: 2rem 1rem 0 1rem;
+    text-align: center;
+}
+
+section{
+    margin-bottom: 8rem;
+}
+
+h2{
+    background: #0b0b2f;
+    color: white;
+    padding: 1rem;
+    vertical-align: top;
+    font-size: 1.7rem;
+    margin-bottom: 2rem;
+}
+
+article{
+    margin-bottom: 2rem;
+}
+
+figcaption{
+    color: black;
+    background: rgba(255, 255, 255, 0.5);
+    line-height: 4rem;
+    text-align: left;
+    padding-left: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+}
+
+textarea,input:not([type="submit"]){
+    display: block;
+    width: 100%;
+    border: none;
+    background: #eeeeee;
+    color: black;
+    line-height: 4rem;
+    margin-bottom: 1rem;
+    outline: none;
+    padding: 0 1rem;
+}
+
+textarea{
+    line-height: initial;
+    height: 12rem;
+    resize: none;
+}
+
+iframe{
+    border: none;
+    width: 100%;
+    height: 30rem;
+}
+
+figure{
+    display: inline-block;
+    position: relative;
+}
+
+p,input,textarea{
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* -------------- */
+
+nav li:not(:first-child){
+    display: inline-block;
+    font-size: 1.3rem;
+    padding: 0 .5rem;
+}
+
+nav li:first-child{
+    display: block;
+    font-size: 3rem;
+    font-weight: bold; 
+    margin-bottom: 1rem;
+}
+
+[src="img/profil.jpg"]{
+    display: block;
+    width: 17rem;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin: 2rem auto;
+}
+
+h2 + p{
+    margin-bottom: 2rem;
+}
+
+figure img{
+    vertical-align: bottom;
+}
+
+[type="submit"]{
+    display: block;
+    margin-bottom: 6rem;
+    padding: 1rem 2rem;
+    border: none;
+    color: white;
+    background: #0b0b2f;
+    font-weight: bold;
+}
+
+@media screen and (min-width:750px){
+
+    main{
+        display: block;
+        margin: 0 auto;
+            padding: 2rem 0 0 0;
+    }
+
+    header,footer{
+        line-height: 6rem;
+    }
+
+
+    nav li:first-child{
+        display: inline-block;
+    }
+    
+    header nav{
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            max-width: 750px;
+            text-align: right;
+    }
+
+    header ul li:first-child{
+        position: absolute;
+        left: 0;
+    }
+
+    [src="img/profil.jpg"]{
+        float: left;
+    }
+    
+    main section:first-of-type{
+        margin-bottom: 0;
+        height: 30rem;
+    }
+
+    main section:first-of-type p{
+        padding: 7rem 0 0 23rem;
+        text-align: left;
+    }
+
+    p{
+        text-align: left;
+    }
+
+    article {
+        display: inline-block;
+        width: 24%;
+    }
+
+    form{
+        display: inline-block;
+        width: 49%;
+        padding-right: 4rem;
+    }
+
+    iframe{
+        display: inline-block;
+        width: 49%;
+        padding-top: 4rem;        
+    }
+
+    footer ul li:first-child{
+        position: absolute;
+        right: 0;
+    }
+
+    footer nav{
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        max-width: 750px;
+        text-align: left;        
+    }
+
+    main section:nth-child(3) p{
+        display: inline-block;
+        width: 49%;
+        padding-right: 2rem;
+    }
+
+    main section:nth-child(3) p:last-child{
+        display: inline-block;
+        width: 49%;
+        padding-right: 0;
+        padding-left: 2rem;
+    }
+    
+}
