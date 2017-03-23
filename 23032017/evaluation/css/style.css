@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-image: url("../img/background.png");
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+img{
+    max-width: 100%;
+}
+
+header,footer{
+    background: #C55394
+}
+
+header{
+    position: relative;
+    text-align: right;
+}
+
+nav{
+    display: inline-block;
+    padding: 0 1rem;
+}
+
+ul{
+    position: relative;
+    line-height: 3rem;
+}
+
+li{
+    display: inline-block;
+    padding: 1rem;
+    color: white;
+}
+
+h1,h2,span{
+    font-family: 'Courgette', cursive;
+    font-weight: 400;
+}
+
+h1{
+    color: #C55394;
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    font-weight: bold;
+    background-image: url("../img/rainbow.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-origin: content-box;
+}
+
+h2{
+    color: #C55394;
+    text-align: left;
+    padding-bottom: 1rem;
+}
+
+span{
+    color: #C55394;
+    font-size: 1.3rem;
+    line-height: 4rem;
+    font-weight: bold;
+}
+
+.fa-star-o{
+    padding-right: 1rem;
+}
+
+section{
+    max-width: 75rem;
+    -webkit-box-shadow: .1rem .1rem 3.2rem #333;
+    box-shadow: .1rem .1rem 3.2rem #333;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    margin: auto;
+    padding: 4rem 2rem;
+    background: white;
+}
+
+figure{
+    display: inline-block;
+    width: 23%;
+    position: relative;
+}
+
+figcaption{
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, .7);
+    color: white;
+    line-height: 3rem;
+    width: 100%;
+    font-size: 1.3rem;
+}
+
+iframe,div{
+    display: inline-block;
+}
+
+iframe{
+    border: none;
+    vertical-align: top;
+    width: 50%;
+    margin-right: 2rem;
+    height: 27rem;
+}
+
+form{
+    padding-top: 1.2rem;
+}
+
+footer{
+    margin-top: 10rem;
+    padding: 1rem 2rem;
+    line-height: 3rem;
+    color: white;
+    text-align: right;
+    font-size: 1.2rem;
+}
+
+input{
+    display: block;
+    padding: .7rem;
+    outline: none;
+}
+
+header h2{
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    color: white;
+    padding: 1rem 2rem;
+}
+
+article:last-of-type{
+    text-align: left;
+}
+
+section article p{
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+section article p:not(.not){
+    padding-bottom: 2rem;
+}
+
+article:not(:last-of-type){
+    margin-bottom: 2rem;
+}
+
+section article:not(:last-of-type){
+    margin-bottom: 5rem;
+}
+
+figure:not(:last-of-type){
+    margin-right: 1rem;
+}
+
+[type="submit"]{
+    border: none;
+    color: white;
+    background: #C55394;
+    padding: .7rem 1.5rem;
+    margin-top: 1rem;
+    -webkit-border-radius: .5rem; 
+    border-radius: .5rem; 
+}
+
+div p:nth-child(5){
+    margin-top: 2rem;
+}
+
+li:hover{
+    background: #EB43A3;
+}
+
+@media screen and (max-width:350px){
+
+    nav{
+        display: none;
+    }
+
+    header h2{
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: #EB43A3;
+    }
+
+    figure{
+        display: block;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    iframe{
+        width: 100%;
+    }
+    
+}
