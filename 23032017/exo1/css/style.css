@@ -1,0 +1,129 @@
+/* Initialisation */
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.5rem;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    max-width: 100%;
+}
+
+/* Style du header 
+    -Ajouter une marge intérieure de 20px
+    -La nav ne dépasse pas les 850px;
+    -Les lien de la nav sont centrés sauf le premier qui est à gauche et le dernier à droite
+*/
+
+header{
+    padding: 2rem;
+    border: .1rem dashed black;
+    text-align: center;
+}
+
+nav{
+    max-width: 85rem;
+    margin: auto;  /* Centré la nav */
+    border: 1rem double red;
+    position: relative;
+}
+
+li{
+    display: inline-block;
+}
+
+li:first-of-type{
+    position: absolute;
+    left: 0;
+}
+
+li:last-of-type{
+    position: absolute;
+    right: 0;
+}
+
+/* Style main
+    -La nav ne dépasse pas les 850px;
+    -les différentes zones ont une marge en bas de 40px
+
+*/
+
+main{
+    max-width: 85rem;
+    margin: 0 auto 4rem auto;
+}
+
+section:not(:last-child){
+    margin-bottom: 4rem;
+}
+
+/* Style Portfolio
+    -Le portfolio est sur 2 colonnes
+    -Les figcaption sont calées au-dessus de l'image avec un fond blanc à 50% d'opacité
+*/
+
+figure{
+    display: inline-block;
+    width: 49%;
+    position: relative;
+}
+
+figcaption{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, .5);
+}
+
+/* Style Formulaire
+    -Le textarea et les input (sauf submit) font toute la largeur du formulaire
+    -Le type submit a une couleur de fond et une couleur de police
+*/
+
+form{
+    text-align: right;
+}
+
+input:not(:last-of-type),textarea{
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+[type="submit"]{
+    background: red;
+    color: white;
+    border: none;
+    padding: 1rem;
+}
+
+/* Méthode desktop down */
+
+@media screen and (max-width:450px){
+
+    figure{
+        display: block;
+        width: 100%;
+    }
+
+    img{
+        
+    }
+    
+}
