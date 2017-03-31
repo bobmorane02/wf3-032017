@@ -1,0 +1,79 @@
+/* Reset */
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,900|Roboto:400,700');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-family: 'Roboto',sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+h1,h2,h3{
+    font-family: 'Merriweather',serif;
+    font-weight: 900;
+}
+
+header{
+    color: white;
+    background-color: grey;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+span{
+    font-family: 'Roboto',sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+ul{
+    display: none;
+}
+
+main{
+    padding: 1rem;
+}
+footer{
+    font-size: 1.3rem;
+    color: white;
+    background: grey;
+    padding: 2rem;
+    position: fixed;
+    bottom: 0;
+    display: block;
+    width: 100%;
+}
+
+h2{
+    font-size: 2rem;
+    padding-bottom : 2rem;
+    color: grey;
+}
+
+h2:after{
+    content: "";
+    display: block;
+    width: 10rem;
+    height: .2rem;
+    background: grey;
+    margin: auto;
+    margin-top: 2.2rem;
+}
+
+h3{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
