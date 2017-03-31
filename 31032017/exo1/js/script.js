@@ -28,7 +28,13 @@ $(document).ready(function(){
     myHeader.append('<h1>'+siteTitle+'<\h1>');
 
     // Générer une balise nav+ul dans le header
-    myHeader.append('<nav><i class="fa fa-bars" aria-hidden="true"></i><ul></ul></nav>');
+    myHeader.append('<nav><ul></ul><i class="fa fa-bars" aria-hidden="true"></i></nav>');
+
+    // Activer le burgermenu au click sur .fa-bars
+    $('.fa-bars').click(function(){
+        $('li').toggleClass('show');
+        $('ul').toggleClass('showUl');
+    });
 
     // Faire une boucle for... sur myNav pour générer les liens de la nav
     for (var i=0;i<myNav.length;i++){
@@ -39,6 +45,7 @@ $(document).ready(function(){
     var myMain = $('main');
     myMain.append('<h2>'+myTitles.Accueil+'</h2>');
     myMain.append('<section>'+myContent.Accueil+'</section>');
+    $('[href="Accueil"]').addClass('active');
 
     // Capter l'événement click sur les balises a en bloquant le comportement naturel des balises a
     $('a').click(function(e){
@@ -53,19 +60,21 @@ $(document).ready(function(){
         // console.log($(this).attr('href'));
 
         // vérifier la valeur de l'attribut href pour afficher le bon titre
+        $('a').removeClass('active');
         if($(this).attr('href')=='Accueil'){
+            $('[href="Accueil"]').toggleClass('active');
             $('h2').text(myTitles.Accueil);
             $('section').html(myContent.Accueil);
         } else if($(this).attr('href')=='Portfolio'){
+            $('[href="Portfolio"]').toggleClass('active');
             $('h2').text(myTitles.Portfolio);
             $('section').html(myContent.Portfolio);
         } else {
+            $('[href="Contacts"]').toggleClass('active');
             $('h2').text(myTitles.Contacts);
             $('section').html(myContent.Contacts);
         };
 
     });
-
-
 
 }); // Fin de chargement du DOM
