@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.5rem;
+}
+
+header,main,footer{
+    width: 80rem;
+    margin: auto;
+}
+
+input,textarea,label{
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+}
