@@ -90,7 +90,7 @@ $('document').ready(function(){
         } else {
             formValid++;
         };
-        
+
         // => avatarGender vérifier la valeur
         if( avatarGender == undefined){
             $('.labelGender b').text('Vous devez choisir un genre');
@@ -137,7 +137,6 @@ $('document').ready(function(){
             var totalBoys = 0;
             var totalGirls = 0;
             var totalAge = 0;
-            // var ageAmount = 0;
 
             for(i=0;i<myTown.length;i++){
                 // Condition pour le genre
@@ -153,9 +152,6 @@ $('document').ready(function(){
             // Afficher dans le tableau HTML le nombre de girls et de totalBoys
             $('#simsWoman').html(totalGirls+'<b>/'+myTown.length+'</b>');
             $('#simsMan').html(totalBoys+'<b>/'+myTown.length+'</b>');
-
-            // Calculer la moyenne d'age
-            // ageAmount = totalAge/myTown.length;
 
             // Afficher la moyenne d'age
             $('#simsAgeAmount').html(Math.round(totalAge/myTown.length)+'<b> ans</b>');
