@@ -1,6 +1,9 @@
 // attendre le chargement du DOM
 $('document').ready(function(){
 
+    // Créer un tableau vide pour enregistrer les avatars
+    var myTown = [];
+
     // Vérifier le genre de l'avatarAge
     var avatarWoman = $('#avatarWoman');
     var avatarMan = $('#avatarMan');
@@ -14,6 +17,8 @@ $('document').ready(function(){
         avatarGender = avatarWoman.val();
         // Vider le message d'erreur
         $('.labelGender b').text('');
+        // Modifier l'attribut src de #avatarBody
+        $('#avatarBody').attr('src','img/'+avatarGender+'.png');
     });
 
     $(avatarMan).click(function(){
@@ -22,9 +27,22 @@ $('document').ready(function(){
         // modifier la valeur de avatarGender
         avatarGender = avatarMan.val();
         // Vider le message d'erreur
-        $('.labelGender b').text('');          
+        $('.labelGender b').text('');
+        // Modifier l'attribut src de #avatarBody
+        $('#avatarBody').attr('src','img/'+avatarGender+'.png');      
     });    
     
+    //
+    $('select').change(function(){
+        
+        // Condition if pour modifier la valeur src de avatarTop ou avatarStyleBottom
+        if($(this).attr('id') == 'avatarStyleTop'){
+            $('#avatarTop').attr('src','img/top/'+$(this).val()+'.png');
+        } else {
+            $('#avatarBottom').attr('src','img/bottom/'+$(this).val()+'.png');
+        };
+    });
+
     // Supprimer les messages d'erreur
     $('input,select').focus(function(){
         //Séléctionner la balise précédente
@@ -72,9 +90,8 @@ $('document').ready(function(){
         } else {
             formValid++;
         };
-
+        
         // => avatarGender vérifier la valeur
-        console.log(avatarGender);
         if( avatarGender == undefined){
             $('.labelGender b').text('Vous devez choisir un genre');
         } else {
@@ -82,16 +99,68 @@ $('document').ready(function(){
         };
 
         // Validation finale : vérifier formValid
-        console.log(formValid);
         if (formValid == 5){
             
             // Envoyer les données au serveur et attendre la réponse du serveur.
 
-            // Vider les champs du formulaire
+            // Ajouter une ligne dans le tableau HTML
+            $('table').append(''+
+            '<tr>'+
+                '<td><b>'+avatarName+'</b></td>'+
+                '<td>'+avatarAge+'</td>'+
+                '<td>'+avatarGender+'</td>'+
+                '<td>'+avatarStyleTop+', '+avatarStyleBottom+'</td>'+
+            '</tr>'
+            );
 
-            console.log('Formulaire OK');
+            // Ajouter l'avatar dans le tableau JS
+            myTown.push({
+                name:   avatarName,
+                age:    parseInt(avatarAge),
+                gender: avatarGender,
+                style:  avatarStyleTop+' ,'+avatarStyleBottom
+            });
+
+            // Vider les champs du formulaire
             $('form')[0].reset();
-        }; 
+            avatarGender = undefined;
+            
+            // Revenir au valeurs 'null' pour l'avatarAge
+            $('#avatarBody').attr('src','img/null.png');
+            $('#avatarTop').attr('src','img/top/null.png');
+            $('#avatarBottom').attr('src','img/bottom/null.png');
+
+            // Afficher la taille totale de la ville dans total sims
+            $('#totalSims').text(myTown.length);
+
+            // Faire une boucle for sur myTown pour connaitre les stats
+            var totalBoys = 0;
+            var totalGirls = 0;
+            var totalAge = 0;
+            // var ageAmount = 0;
+
+            for(i=0;i<myTown.length;i++){
+                // Condition pour le genre
+                if(myTown[i].gender == 'girl'){
+                    totalGirls++;
+                    totalAge = totalAge+myTown[i].age;
+                } else {
+                    totalBoys++;
+                    totalAge = totalAge+myTown[i].age;
+                };
+            };
+
+            // Afficher dans le tableau HTML le nombre de girls et de totalBoys
+            $('#simsWoman').html(totalGirls+'<b>/'+myTown.length+'</b>');
+            $('#simsMan').html(totalBoys+'<b>/'+myTown.length+'</b>');
+
+            // Calculer la moyenne d'age
+            // ageAmount = totalAge/myTown.length;
+
+            // Afficher la moyenne d'age
+            $('#simsAgeAmount').html(Math.round(totalAge/myTown.length)+'<b> ans</b>');
+        };
+
                   
     });
 
