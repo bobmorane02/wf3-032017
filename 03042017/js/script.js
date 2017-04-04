@@ -157,7 +157,6 @@ $('document').ready(function(){
             $('#simsAgeAmount').html(Math.round(totalAge/myTown.length)+'<b> ans</b>');
         };
 
-                  
     });
 
 });// Fin de chargemnt du DOM
