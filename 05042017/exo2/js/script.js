@@ -22,10 +22,15 @@ $('document').ready(function(){
         $('nav').slideUp(function(){
             // changer de page
            $('main').load('views/'+lien,function(){
-               var valueBar = $('h3+ul>li>p');
-               for (i=0;i<valueBar.length;i++){
-                    $(valueBar[i]).animate({'width': $(valueBar[i]).children('span').attr('data-percent')+'%'});
-               };
+                if(lien == "about.html"){
+                    var valueBar = $('h3+ul>li>p');
+                    for (i=0;i<valueBar.length;i++){
+                        var valuePercent = $(valueBar[i]).children('span').attr('data-percent')+'%';
+                        console.log(valuePercent);
+                        $(valueBar[i]).animate({'width': valuePercent});
+                        $(valueBar[i]).children('span').text($(valueBar[i]).children('span').text()+' '+valuePercent);
+                    };
+                };
            });
         });
     });
