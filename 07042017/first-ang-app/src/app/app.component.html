@@ -1,0 +1,21 @@
+<!-- Ajouter la directive pour afficher le contenu des routes -->
+
+
+<header>
+  <h1>Robert KOWALCZYK<span>Etudiant WEB</span></h1>
+  <!-- Appeler une fonction au click sur la balise -->
+  <a (click)="openBurger()"><i class="fa fa-bars"></i></a>
+  <nav [ngClass]="{'openedNav': burgerIsOpen}">
+    <ul>
+      <li><a (click)="openBurger()" routerLink="/">Accueil</a></li>
+      <li><a (click)="openBurger()" routerLink="/about">A propos</a></li>
+      <li><a (click)="openBurger()" routerLink="/portfolio">Portfolio</a></li>
+      <li><a (click)="openBurger()" routerLink="/contacts">Contacts</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer>Under MIT Licence</footer>

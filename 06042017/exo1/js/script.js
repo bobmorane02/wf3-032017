@@ -1,4 +1,4 @@
-$('document').ready(function(){
+$(document).ready(function(){
 
 // Page d'accueil    
     // Burger menu 
@@ -113,13 +113,13 @@ $('document').ready(function(){
 
 
         });
+
+        // fermer la modale
+
+        $('.fa-times').click(function(){
+            $('#modal').fadeOut();
+        });
     };
-
-    // fermer la modale
-
-    $('.fa-times').click(function(){
-        console.log('click');
-    });
 
     $('nav a').click(function(e){
 
