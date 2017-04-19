@@ -1,0 +1,55 @@
+***********************************************
+Présentation de PHPMyAdmin (PMA)
+***********************************************
+
+Qu'est-ce que PHPMyAdmin :
+PMA est une interface d'administration pour le SGBD MySQL. Il est écrit en PHP et 
+s'appuie sur le serveur HTTP Apache (serveur Web).
+
+Il permet d'administrer les éléments suivants :
+    - les BDD
+    - les tables et leur champs
+    - les index, les clés primaires et étrangéres
+    - les utilisateurs de la base et leur permissions
+    - exporter / importer les données dans divers formats
+
+Vous pourriez remplacer PMA par d'autres interfaces d'administration de BDD:
+DbNinja, SQLBuddy, MyWebSQL, phpMiniAdmin ...
+
+***********************************************
+Définition des TYPES de champ :
+    - INT pour nombre entier (taille maxi. de 11 caractéres)
+    - VARCHAR pour chaîne de caractères de longueur variable (taille maxi. 255 caratères)
+    - TEXT pour chaîne de caractères de longueur variable (taille maxi. 65535 caractéres)
+    - DATE au format YYYY-MM-DD
+    - DATETIME au format YYYY-MM-DD HH:ii:ss
+    - FLOAT pour les nombres décimaux
+    - ENUM pour donner une liste de valeurs selon la syntaxe 'm','f'
+
+Définition des attributs :
+    - Binary : pour rendre le champ sensible à la casse
+    - Unsigned : pas de chiffre négatif
+    - Unsigned Zerofill : pas de chiffre négatif + complément avec des 0 (exemple "12" en INT(4) donnera "0012")
+
+***********************************************
+IMPORT/EXPORT de base de données :
+
+- Via PHPMyAdmin :  avec les onglets "import" ou "export" correspondants.
+
+- En ligne de commande : 
+Démarrer > Executer > cmd
+
+ Puis:
+
+- Pour faire un export de BDD :
+cd c:\xampp\mysql\bin
+mysqldump -u root entreprise > monfichier.sql
+
+=> le fichier d'export appelé monFichier.sql se trouve par défaut dans le dossier c:\xampp\mysql\bin.
+
+- Pour faire un import en BDD :
+    -1- Créer une base de données d'accueil : import_entreprise
+    -2- Mettre Mettre le fichier d'import dans le dossier par defaut c:\xampp\mysql\bin
+    -3- Saisir dans l'invite de commande :
+        mysql -u root import_entreprise < monFichier.sql
+
