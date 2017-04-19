@@ -10,7 +10,7 @@ Sous PHPMyAdmin :
     notre cas le champ id_fourn de la table article. Pour cela cliquer sur INDEX du champ
     correspondant dans l'onglet STRUCTURE.
 -4- Créer une contrainte entre la FK et la PK : on va dans STRUCTURE de la table article puis
-    sur "vue relationnel" :
+    sur "vue relationnelle" :
         -> NO ACTION ou RESTRICT : on ne peut pas supprimer ou updater un fournisseur s'il est
            présent dans la table article. NO ACTION et RESTRICT font la même chose, sauf que
            NO ACTION exécute d'abord un DELETE puis recrée l'enregistrement (donc 2 actions), 
