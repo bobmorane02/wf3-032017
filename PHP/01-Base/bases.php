@@ -208,6 +208,20 @@ if (isset($var2)) echo 'var2 existe bien <br>';
 // empty sera utilisé pour  vérifier, par exemple, que les champs d'un formulaire sont bien
 //  remplis. isset permet de vérifier, par exemple l'existence d'un indice dans un array
 
+// Entrer une valeur dans une variable sous condition (PHP 7) :
+$var1 = isset($mavar) ? $mavar : 'valeur par defaut'; // dans cette ternaire on affecte la valeur de $mavar à $var1
+                                                      // sinon on affecte la valeur 'valeur par defaut
+echo $var1.'<br>';
+
+// En PHP 7 on fait :
+$var2 = $mavar ?? 'valeur par defaut'; // Cela fait exactement la même chose. le "??" signifie prend la premiere
+                                       // valeur qui existe.
+echo $var2.'<br>';
+
+$var3 = $_GET['pays'] ?? $_GET['ville'] ?? 'pas d\'info'; // Soit on prend le pays s'il existe, soit la ville si elle
+                                                          // elle existe, soit "pas d'info"
+echo $var3.'<br>';
+
 // --------------------------------------------
 echo '<h2> Condition Switch </h2>';
 // --------------------------------------------
