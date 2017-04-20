@@ -208,3 +208,102 @@ if (isset($var2)) echo 'var2 existe bien <br>';
 // empty sera utilisé pour  vérifier, par exemple, que les champs d'un formulaire sont bien
 //  remplis. isset permet de vérifier, par exemple l'existence d'un indice dans un array
 
+// --------------------------------------------
+echo '<h2> Condition Switch </h2>';
+// --------------------------------------------
+// Dans le switch ci-dessous, les "case" représentent les différent cas dans lesquels on peut potentiellement tomber.
+
+$couleur='jaune';
+
+switch($couleur){
+    case 'bleu' : echo 'Vous aimez le bleu <br>'; break;
+    case 'rouge' : echo 'Vous aimez le rouge <br>'; break;
+    case 'vert' : echo 'Vous aimez le vert <br>'; break;
+    default : echo 'Vous n\'aimez rien ! <br>';    
+}
+
+// Le switch compare la valeur de la variable à chaque case. Lorsqu'une valeur correspond, on exécute l'instruction
+// en regard du case, puis un break indique la sortie du switch
+// Le default correspond au cas ou aucun case n'est valide.
+
+// exercice : écrivez la condition ci-dessus avec des if
+if($couleur == 'bleu'){
+    echo 'Vous aimez le bleu <br>';
+} elseif ($couleur == 'rouge'){
+    echo 'Vous aimez le rouge <br>';
+} elseif ($couleur == 'vert'){
+    echo 'Vous aimez le vert <br>';
+} else {
+    echo 'Vous n\'aimez rien ! <br>';
+}
+
+// --------------------------------------------
+echo '<h2> Fonctions prédéfinies </h2>';
+// --------------------------------------------
+// Une fonction prédéfinie permet de réaliser un traitement spécifique prévu dans le langage.
+
+// --------------------------------------------
+echo '<h2>Traitement des chaînes de caractères (strlen,strpos,substr)</h2>';
+
+$email1 = "prenom@site.fr";
+
+echo strpos($email1,'@').'<br>'; // strpos() indique la position 6 du caratére "@" dans la chaine $email1
+echo strpos('Bonjour','@');
+var_dump(strpos('Bonjour','@'));
+// Quand j'utilise une fonction prédéfinie, il faut se demander quels sont les arguments à lui fournir
+// pour qu'elle s'exécute correctement, et ce qu'elle peut retourner comme résultat.
+// Dans l'exemple de strpos() : succès => integer, échec => booléan false.
+
+// --------------------------------------------
+$phrase = 'Mettez une phrase à cet endroit';
+echo '<br>'.strlen($phrase).'<br>';
+
+// --------------------------------------------
+$texte = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ipsa iure eveniet tempore, iusto aspernatur magnam, excepturi.';
+echo substr($texte,0,20).'...<a href="">Lire la suite</a><br>'; // On découpe une partie du texte et on lui concaténe un lien. Succès => string 
+// sinon false.
+
+// --------------------------------------------
+echo str_replace('site','gmail',$email1).'<br>'; // remplace 'site' par 'gmail' dans le string contenu dans $email1
+
+// --------------------------------------------
+$message = '       Hello world!            ';
+echo strtolower($message).'<br>'; // chaine en minuscule
+echo strtoupper($message).'<br>'; // chaine en majuscule
+
+echo strlen($message).'<br>';
+echo strlen(trim($message)).'<br>'; // trim() permet de supprimer les espaces au début et à la fin d'une chaine.
+
+// --------------------------------------------
+echo '<h2> Manuel PHP en ligne </h2>';
+// --------------------------------------------
+
+echo '<a href="https://secure.php.net/manual/fr/index.php" target="_blank">Manuel du PHP en ligne</a>';
+
+// --------------------------------------------
+echo '<h2> Gestion des dates </h2>';
+// --------------------------------------------
+echo date('d/m/Y H:i:s').'<br>'; // affiche la date et l'heure suivant le format indiqué
+
+echo time().'<br>'; // retour le timestamp actuel = nombre de secondes écoulées depuis le 01/01/1970 à 00:00:00
+                    // (date de création du premier systéme UNIX).
+
+// La fonction prédéfinie strtotime() :
+$dateJour = strtotime('10-01-2016'); // retourne le timestamp de la date en argument
+echo $dateJour.'<br>';
+
+// La fonction strftime () :
+$dateFormat = strftime('%Y-%m-%d',$dateJour); // Transforme le timestamp donné selon le format demandé.
+echo $dateFormat.'<br>'; // Affiche 2016-01-10
+
+// Exemple de convertion de format de date :
+// Transformer 23-05-2015 en 2015-05-23
+echo strftime('%Y-%m-%d',strtotime('23-05-2015')).'<br>';
+
+// Tranformer 2015-05-23 en 23-05-20158
+echo strftime('%d-%m-%Y',strtotime('2015-05-23')).'<br>';
+
+// Cette méthode de transformation est limitée dans le temps (2038) ...
+// On peut donc utiliser une autre méthode avec la classe DateTime :
+$date = new DateTime('11-04-2017'); // On intentie un nouvel objet DateTime de nom $date
+echo $date->format('Y-m-d');        // On applique la méthode format() de cette objet au paramétre passé
