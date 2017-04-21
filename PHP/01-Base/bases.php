@@ -321,3 +321,248 @@ echo strftime('%d-%m-%Y',strtotime('2015-05-23')).'<br>';
 // On peut donc utiliser une autre méthode avec la classe DateTime :
 $date = new DateTime('11-04-2017'); // On intentie un nouvel objet DateTime de nom $date
 echo $date->format('Y-m-d');        // On applique la méthode format() de cette objet au paramétre passé
+
+// --------------------------------------------
+echo '<h2> Les functions utilisateur </h2>';
+// --------------------------------------------
+// Les fonctions qui ne sont pas prédéfinies dans le langage sont déclarées puis exécutées par l'utilisateur.
+
+// Déclaration d'une fonction :
+
+function separation() {
+    echo '<hr>';        // simple fonction permettant de tirer un trait dans la page web.
+}
+
+// Appel de la fonction :
+separation();   // On exécute la fonction
+
+// --------------------------------------------
+// fonction avec arguments : les arguments sont des paramétres fournis à la fonction et lui permettent
+// de compléter ou modifier son comportement initialement prévu.
+
+function bonjour($qui){             // $qui apparaît ici pour la premiére fois. Il s'agit d'une variable 
+                                    // qui reçoit la valeur d'un argument.
+    return 'Bonjour '.$qui.'<br>';  // return permet de renvoyer le résultat de l'exécution de la fonction.                        
+}                                   // return temine la fonction toutes instructions suivant return seront
+                                    // ignorées.
+
+// Appel de la fonction :
+echo bonjour('Robert');             // On appelle la function en lui donnant de string 'Robert' en argument -> affiche 'Bonjour Robert'
+
+$prenom = 'Etienne';
+echo bonjour($prenom);              // Ici l'argument est une variable
+
+// --------------------------------------------
+// Exercice :
+function appliqueTva($prix) {
+    return $prix*1.2;
+}
+
+// Ecrivez une fonction appliqueTva2 qui applique un taux de TVA quelconque à un prix quelconque.
+function appliqueTva2($prix,$taux){
+    return $prix+($prix*$taux)/100;
+}
+
+echo appliqueTva2(45,20).'<br>'; // lorsqu'une fonction attend N arguments, il faut obligatoirement lui donner N arguments
+
+// --------------------------------------------
+// Exercice :
+function meteo($saison,$temperature){
+    echo "Nous sommes en $saison et il fait $temperature degré(s) <br>";
+}
+
+meteo ('hiver',2);
+meteo ('printemps',2);
+
+// Créer une fonction meteo2 qui affiche "au printemps" et non "en printemps"
+function meteo2($saison,$temperature){
+/*  $prefixe = 'en';                                            // Mode if classique
+    if ($saison=='printemps'){ $prefixe='au'; } */
+    $prefixe = $saison=='printemps'?'au':'en';                  // Mode ternaire
+    $pluriel = ($temperature>=-1 and $temperature<=1)?'':'s';   // Bonus gestion pluriel température
+    echo "Nous sommes $prefixe $saison et il fait $temperature degré$pluriel <br>";
+}
+
+meteo2('printemps',1);
+meteo2('été',30);
+
+// --------------------------------------------
+// Exercice :
+function prixLitre() {
+    return rand(1000,2000)/1000; // détermine un prix aléatoire entre 1 et 2€
+}
+
+// Ecrivez la fonction factureEssence() qui calcule le prix total de votre facture d'essence en fonction du
+// nombre de litres que vous lui donnez. Cette fonction retourne le phrase "Votre facture est de X euros
+// pour Y litres d'essence" (X et Y sont variables).
+// Dans cette fontion, utilisez la fonction prixLitre() qui vous retourne le prix du litre.
+
+function factureEssence($litre){
+    echo 'Votre facture est de '.number_format($litre*prixLitre(), 2)." € pour $litre litres d'essence";
+}
+
+factureEssence(20);
+
+// --------------------------------------------
+echo '<h2> Les variables locales et globales </h2>';
+// --------------------------------------------
+
+
+function jourSemaine(){
+    $jour = 'vendredi'; // ici dans la fonction nous sommes dans un espace LOCAL.
+                        // la variable $jour est LOCALE
+    return $jour;
+}
+
+// A l'extérieur de la fonction je suis dans l'espace GLOBAL.
+
+echo $jour; // la variable locale $jour n'est pas accessible dans l'espace global
+echo jourSemaine().'<br>'; // on peut récupérer la valeur de la variable $jour grâce au return de la function.
+
+// --------------------------------------------
+$pays ='France';    // variable globale
+function affichagePays(){
+    global $pays;   // le mot clé global permet de récupérer une variable global au sein de la fonction
+    echo $pays;     // On peut utiliser cette variable $pays
+}
+
+affichagePays();
+
+// --------------------------------------------
+echo '<h2> Les structures itératives (boucles) </h2>';
+// --------------------------------------------
+// boucle while
+
+$i=0;   // valeur de départ de la boucle
+while($i<3){        // tant que $i est inférieur à 3, exécute les instruction qui suivent
+    echo $chaine = $i==2?$i:"$i---"; // bonus : on affiche les nombres suivit de "---" sauf pour le dernier soit 3-1=2 
+    $i++;           // obligatoire pour éviter une boucle infinie !!!
+}
+
+echo '<br>';
+
+// --------------------------------------------
+// Exercice à l'aide d'une boucle while afficher dans une balise select les années 1917 à 2017
+
+$annee = date('Y')-100;
+
+echo '<select>';
+while ($annee <= date('Y')) {
+    echo "<option>$annee</option>";
+    $annee++;
+}
+echo '</select>';
+
+// --------------------------------------------
+// Boucle do while
+// La boucle do ... while s'execute au moins 1 fois, puis jusqu'à ce que la condition de fin soit fausse
+
+echo '<br>Boucle do while</br>';
+
+do {
+    echo 'un tour de boucle';
+} while (false); // on met la condition d'exécution ici à la place de false (";" à la fin de la boucle)
+
+// --------------------------------------------
+// Boucle for :
+echo '<br>';
+for($j=0;$j < 16;$j++){ // Init de valeur de départ;condition de boucle;incrémentation ou décrémentation
+    print $j.'<br>';
+}
+
+// --------------------------------------------
+// Exercice : 
+// 1- faire une boucle qui affiche 0 à 9 sur la même ligne
+// 2- faire la même chose dans un tableau HTML.
+
+for ($i=0;$i<=9;$i++){
+    echo " $i ";
+}
+
+// 2-
+echo '<table border="1"> <tr>';
+for ($i=0 ; $i<=9 ; $i++){
+    echo "<td> $i </td>";
+}
+echo '</tr> </table>';
+
+// Contribution perso (un peut de style ne fait pas de mal!)
+echo '<style>
+        table {
+                border-collapse: collapse;
+                margin : 20px 0;
+              }
+        td    {
+                padding: 5px 10px;
+              }
+      </style>';
+
+// Exercice :  faire un tableau de 10 lignes et de 10 colonnes suivant l'exercice précédant
+echo '<table border="1">';
+for ($j=0 ; $j<=9 ; $j++){
+    echo '<tr>';
+    for ($i=0 ; $i<=9 ; $i++){
+        echo "<td> $i </td>";
+    }
+    echo '</tr>';
+}
+echo '</table>';
+
+// --------------------------------------------
+echo '<h2> Les Arrays (Tableaux) </h2>';
+// --------------------------------------------
+// On peut stocker dans un array une multitude de valeur quelque soit leur type.
+
+$liste = array('grégoire','Nathalie','Emilie','François','George');
+// déclaration d'un array appelé $liste contenant des prénoms
+
+// echo $liste; // Ca marche pas. Impossible d'afficher directement le contenu d'un array
+
+echo '<pre>';var_dump($liste);echo '</pre>';
+echo '<pre>';print_r($liste);echo '</pre>';
+// Ces dux instructions d'affichage permettent d'indiquer le type de l'élément mis en argument 
+// ainsi que son contenu. Les balises <pre> servent à faire une mise en forme. Ces 2 instructions
+// ne servent qu'en phase de développement.
+
+// Autre moyen d'affecter des valeurs dans un tableau :
+$tab[] = 'France'; // Permet d'ajouter la valeur 'France' dans le tableau $tab
+$tab[] = 'Italie';
+$tab[] = 'Espagne';
+$tab[] = 'Portugal';
+
+echo '<pre>';print_r($tab);echo '</pre>';  // pour voir le contenu du tableau
+echo $tab[1].'<br>'; // Affiche Italie
+
+// Tableau associatif : tableau dont les indices sont littéraux :
+$couleur = array("j" => "jaune","b" => "bleu","v" => "vert" ); // on peut choisir le nom de l'indice
+
+// Pour accéder à un élément du tableau associatif :
+echo 'La seconde couleur de notre tableau est le '.$couleur['b'].'<br>'; // affiche bleu
+echo "La seconde couleur de notre tableau est le $couleur[b] <br>"; // dans ce cas d'affichage il ne faut pas de quotes dans l'indice => sinon ERREUR ...
+
+// --------------------------------------------
+// Mesurer la taille d'un array
+echo 'Taille du tableau '.count($couleur).'<br>'; // Compte le nombre d'éléments du tableau
+echo 'Taille du tableau '.sizeof($couleur).'<br>'; // même chose
+
+// --------------------------------------------
+// Tranformer un array en string :
+$chaine = implode('-',$couleur); // implode() rassemble les éléments d'un array en une chaine avec un séparateur entre les éléments
+echo $chaine.'<br>';
+
+$couleur2 = explode('-',$chaine); // explode() convertie une chaine en array au indices numériques grâce au séparateur indiqué 
+print_r($couleur2);
+echo '<br>';
+
+// --------------------------------------------
+echo '<h2> La boucle foreach pour parcourir les array </h2>';
+// La boucle foreach est moyen simple de passer en revue un tableau. Elle fonctionne uniquement les arrays et les objets.
+// Elle est automatique et s'arréte à la fin du tableau
+
+foreach ($tab as $valeur) { // La variable $valeur (nom au choix) récupére pour chaque tour de boucle la valeur contenu dans le tableau
+    echo $valeur.'<br>';
+}
+
+foreach ($tab as $indice => $valeur){ // On parcourt le tableau $tab par les indices auxquels on associe les valeurs.
+    echo $indice.' correpond à '.$valeur.'<br>';
+}
