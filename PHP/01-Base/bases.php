@@ -398,10 +398,10 @@ function prixLitre() {
 // Dans cette fontion, utilisez la fonction prixLitre() qui vous retourne le prix du litre.
 
 function factureEssence($litre){
-    echo 'Votre facture est de '.number_format($litre*prixLitre(), 2)." € pour $litre litres d'essence";
+    echo 'Votre facture est de '.number_format($litre*prixLitre(),2)." € pour $litre litres d'essence";
 }
 
-factureEssence(20);
+factureEssence(52);
 
 // --------------------------------------------
 echo '<h2> Les variables locales et globales </h2>';
