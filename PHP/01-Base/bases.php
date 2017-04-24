@@ -563,6 +563,58 @@ foreach ($tab as $valeur) { // La variable $valeur (nom au choix) récupére pou
     echo $valeur.'<br>';
 }
 
-foreach ($tab as $indice => $valeur){ // On parcourt le tableau $tab par les indices auxquels on associe les valeurs.
+foreach ($tab as $indice => $valeur){   // On parcourt le tableau $tab par les indices auxquels on associe les valeurs.
+                                        // Quand il y a 2 variables , la 1ere parcourt la colonne des indices la seconde
+                                        // celle des valeurs. Ces variables peuvent avoir n'importe quel nom.' 
     echo $indice.' correpond à '.$valeur.'<br>';
 }
+
+// --------------------------------------------
+echo '<h2> Les Arrays multidimentionnels </h2>';
+// --------------------------------------------
+//Nous parlons de tableaux multidimentionnels lorsqu'un tableau est contenu dans un autre tableau. Chaque tableau représente une dimension.
+
+// Création d'un tableau multidimentionnel :
+$tab_multi = array(
+    0 => array('prenom' => 'Julien','nom' => 'Dupont','telephone' =>'06 00 00 00'),
+    1 => array('prenom' => 'Nicolas','nom' => 'Durant','telephone' =>'06 00 00 01'),
+    2 => array('prenom' => 'Pierre','nom' => 'Duchemol')
+);
+
+echo '<pre>';print_r($tab_multi);echo '</pre>';
+
+// Accéder à la valeur Julien :
+echo $tab_multi[0]['prenom'].'<br>';    // Affiche Julien : nous entrons d'abord l'indice 0 pour aller ensuite dans l'autre tableau à l'indice
+                                        // 'prenom'. Notez que 'prenom' est un string.
+
+// Parcourir le tableau multidimentionnel avec une boule for :
+for ($i=0; $i<sizeof($tab_multi); $i++){
+    echo $tab_multi[$i]['prenom'].'<br>';
+}
+
+// Exercice : afficher les prénom avec une boucle foreach
+foreach ($tab_multi as $val ) {
+    echo $val['prenom'].'<br>';
+}
+
+// --------------------------------------------
+echo '<h2> Les inclusions de fichiers </h2>';
+// --------------------------------------------
+
+echo 'Premiére inclusion';
+include ('exemple.inc.php'); // on inclut le fichier dont le chemin est spécifié ici
+
+echo '<br>Deuxième inclusion';
+include_once('exemple.inc.php');    // avec le once, on vérifie d'abord si le fichier n'est pas déja inclus, avant de faire l'inclusion
+                                    // (évite par exemple de redéclarer des fonctions en incluant 2 fois le même fichier)
+
+echo '<br>Troiséme inclusion';
+require('exemple.inc.php'); // require fait la même chose de include, mais génère une erreur fatale s'il ne parvient pas à inclure le fichier,
+                            // ce qui intrrompt l'éxecution du script. En revanche, include génère une erreur de type warning qui elle 
+                            // n'interrompt pas la suite de l'exécution du script.
+
+echo '<br>Quatriéme inclusion';
+require_once('exemple.inc.php');    // avec le once, on vérifie d'abord si le fichier n'est pas déjà inclus avant de faire l'inclusion
+
+// le ".inc" du nom du fichier inclus est là à titre indicatif pour préciser qu'il s'agit d'un fichier inclus et pas d'un fichier 
+// directement utilisé.
