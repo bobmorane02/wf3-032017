@@ -8,30 +8,34 @@
        indiqué, en passant par la fonction calcul.
     3- Faire en sorte de garder le fruit choisi et le poids saisi dans les champs du formulaire
        après que celui-ci soit validé.
+
+
 */
 
 require_once ('fonction.inc.php');
+if (!empty($_POST)){
+    $reponse = calcul($_POST['fruit'],$_POST['poids']);
+}
 ?>
 
+<h1>Formulaire Fruits</h1>
 <form method="post" action="">
     <label for="fruit">Fruits</label>
     <select name="fruit" id="fruit">
-        <option value="">-- Choisir--</option>
-        <option value="cerises">Cerises</option>
-        <option value="bananes">Bananes</option>
-        <option value="pommes">Pommes</option>
-        <option value="peches">Pêches</option>    
+        <option value="">-- Choisir --</option>
+        <option value="cerises" <?php if (isset($_POST['fruit']) && $_POST['fruit'] == 'cerises'){echo 'selected';} ?>>Cerises</option>
+        <option value="bananes" <?php if (isset($_POST['fruit']) && $_POST['fruit'] == 'bananes'){echo 'selected';} ?>>Bananes</option>
+        <option value="pommes" <?php if (isset($_POST['fruit']) && $_POST['fruit'] == 'pommes'){echo 'selected';} ?>>Pommes</option>
+        <option value="peches" <?php if (isset($_POST['fruit']) && $_POST['fruit'] == 'peches'){echo 'selected';} ?>>Pêches</option>    
     </select>
-    <br>
     <label for="poids">Poids</label>
-    <input type="number" id="poids" name="poids"><br>
-<input type="submit" value="Valider">
+    <input type="number" id="poids" name="poids" placehorder="poids en grammes" value="<?php echo $_POST['poids'] ?? ''; ?>">
+    <input type="submit" value="Valider">
 </form>
 <p>
 <?php
-    if(!empty($_POST)){
-       // echo 'test';
-        var_dump($_POST);
-    }
+if (!empty($_POST)){
+    echo calcul($_POST['fruit'],$_POST['poids']);
+}
 ?>
 </p>
