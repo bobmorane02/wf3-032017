@@ -260,3 +260,104 @@ $nom = 'durand';
 $resultat->execute();
 $donnees = $resultat->fetch(PDO::FETCH_ASSOC);
 echo implode($donnees,' - ').'<br>';
+
+// ********************************************
+// Exercice
+// ********************************************
+echo '<h1>10- Exercice</h1>';
+
+// Aprés avoir importé la BDD "bibliotheque", affichez dans un liste <ul><li> les livres empuntés par Chloé (il y en a plusieurs...), en utilisant
+// une requête préparée
+$pdo = NULL; // déconnexion de la base précédante (pas utile mais propre).
+
+// 1- Connexion à la BDD :
+$pdo = new PDO('mysql:host=localhost;dbname=bibliotheque','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+
+// 2- requête :
+$resultat = $pdo->prepare("SELECT titre FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonne WHERE prenom = :prenom))");
+// ou bien
+$resultat = $pdo->prepare("SELECT l.titre FROM livre l INNER JOIN emprunt e ON l.id_livre = e.id_livre INNER JOIN abonne a ON a.id_abonne = e.id_abonne WHERE a.prenom = :prenom");
+
+$prenom = 'chloe';
+$resultat->bindParam(':prenom',$prenom,PDO::PARAM_STR); // on peut aussi avoir PDO::PARAM_INT et PDO::PARAM_BOOL 
+$resultat->execute();   // objet PDOStatement (résultat de requête)
+
+// 3- le fetch :
+$livres = $resultat->fetchall(PDO::FETCH_NUM);
+echo '<ul>';
+foreach ($livres as $livre){
+    echo "<li>$livre[0]</li>";
+}
+echo '</ul>';
+
+// ********************************************
+// FETCH_CLASS
+// ********************************************
+echo '<h1>11- FETCH_CLASS</h1>';
+
+// Connexion à la BDD entreprise
+$pdo = new PDO('mysql:host=localhost;dbname=entreprise','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+
+class Employe {
+    public $id_employes;
+    public $prenom;
+    public $nom;
+    public $sexe;
+    public $service;
+    public $date_embauche;
+    public $salaire; // On déclare autant de propriétés qu'il y a de champs dans la table employes. L'orthographe des propriétés DOIT être identique à celle des champs.
+}
+
+$resultat = $pdo->query("SELECT * FROM employes");
+
+$donnees = $resultat->fetchAll(PDO::FETCH_CLASS,'Employe'); // On obtient un array indicé numériquement qui contient un objet issu de la classe Employe
+echo '<pre>';print_r($donnees);echo '</pre>';
+
+// On affiche  le contenu de $donnees avec une boucle foreach
+foreach ($donnees as $employe){
+    echo $employe->prenom.'<br>';
+}
+
+// ********************************************
+// Points complémentaires
+// ********************************************
+echo '<h1>12- Points complémentaires</h1>';
+
+echo '<strong>Le marqueur "?"</strong><br>';
+
+$resultat = $pdo->prepare("SELECT * FROM employes WHERE nom = ? AND prenom = ?");   // On prépare dans une premier temps la requête sans sa partie variable,
+                                                                                    // que l'on représente avec des marquures sous forme "?"
+$resultat->execute(array('durand','damien'));   // "durand" va remplacer le premier "?" et "damien" le second
+
+$donnees = $resultat-> fetch(PDO::FETCH_ASSOC); // pas de boucle car on sait qu'il n'y a qu'un seul résultat
+echo implode($donnees,' - ').'<br>';   // On fait un implode() pour aller plus vite et éviter de faire un affichage dans une boucle
+
+echo '<strong>On peut faire un execute() sans bindParam()</strong><br>';
+$resultat = $pdo->prepare("SELECT * FROM employes WHERE nom = :nom AND prenom = :prenom");
+$resultat->execute(array('nom'=>'durand','prenom'=>'damien'));  // notez l'absence des ':' devant les marqueurs, ils sont optionnels
+
+$donnees = $resultat->fetch(PDO::FETCH_ASSOC);
+echo implode($donnees,' - ');
+
+echo '<br><strong>Afficher une erreur de requête SQL</strong><br>';
+$resultat = $pdo->prepare("SELECT * FROM azerty WHERE nom = 'durand'");
+$resultat->execute();
+echo '<pre>';print_r($resultat->errorInfo());echo '</pre>'; // errorinfo() est une méthode qui appartient à la classe PDOStatement et qui fourni des infos
+                                                            // sur l'erreurSQL éventuellement produite. On trouve le message de l'erreur à l'indice [2] de l'array
+                                                            // retourné par cette méthode.
+
+// ********************************************
+// Mysqli
+// ********************************************
+echo '<h1>13- Mysqli</h1>';
+
+// Il existe une autre maniére de se connecter à une base de données et d'effectuer des requêtes sur cell-ci : l'extension Mysqli
+
+// Connexion à la BDD :
+$mysqli = new Mysqli('localhost','root','','entreprise');
+
+// Un exemple de requête :
+$requete = $mysqli->query("SELECT * FROM employes");
+
+// Notez que les objets $mysqli (issu de la classe Mysqli) et $requete (issu de la classe Mysqli_result)ont des méthodes différentes de PDO. Nous ne pouvons
+// donc pas mélanger les uns avec les autres.
