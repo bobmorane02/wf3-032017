@@ -57,20 +57,5 @@
         </div><!-- .container -->
     </nav>
     
-    <div class="container" style="min-heigth: 80vh;">
+    <div class="container" style="min-height: 80vh;">
         <!-- Ici il y a le contenu spécifique de chaque page -->
-    </div>
-
-    <div class="container">
-        <hr>
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>copyright &copy; Ma boutique - 2017</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-    
-</body>
-</html>
