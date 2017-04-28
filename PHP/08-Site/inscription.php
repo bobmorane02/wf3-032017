@@ -58,22 +58,13 @@ if (!empty($_POST)) {    // si le formulaire est rempli
     // Si aucune erreur sur le formulaire, on vérifie l'unicité du pseudo et de l'email avant inscription en BDD :
     if (empty($contenu)) {  // Si $contenu est vide => pas d'erreur
 
-        // On vérifie l'unicité du pseudo
-        $membre = executeRequete("SELECT id_membre FROM membre WHERE pseudo = :pseudo",array(':pseudo'=> $_POST['pseudo']));
+        // On vérifie l'unicité du pseudo et de l'email
+        $membre = executeRequete("SELECT id_membre FROM membre WHERE pseudo = :pseudo OR email = :email",array(':pseudo'=> $_POST['pseudo'],':email'=>$_POST['email']));
 
         if ($membre->rowCount() > 0){   // On compte le nombre de ligne possédant le même pseudo. Si > 0 alors le pseudo existe déja
-            $contenu .= '<div class="bg-danger">Le pseudo existe déja !</div>';
-        }
+            $contenu .= '<div class="bg-danger">Le pseudo ou l\'email existe déja !</div>';
+        } else {    // Si le pseudo et l'email sont uniques, on peut faire l'inscription en BDD
 
-        // On vérifie l'unicité de l'email
-        $membre = executeRequete("SELECT id_membre FROM membre WHERE email = :email",array(':email'=> $_POST['email']));
-
-        if ($membre->rowCount() > 0){   // On compte le nombre de ligne possédant le même email. Si > 0 alors l'email existe déja
-            $contenu .= '<div class="bg-danger">L\'email existe déja !</div>';
-        }
-
-        // Si le pseudo et l'email sont uniques, on peut faire l'inscription en BDD
-        if (empty($contenu)) {
             $_POST['mdp'] = md5($_POST['mdp']); // permet d'encrypter le mot de passe selon l'algorithme md5. Il faudra le faire
                                                 // également sur la page de connexion pour comparer les 2 mots cyptés
             executeRequete("INSERT INTO membre (pseudo,mdp,nom,prenom,email,civilite,ville,code_postal,adresse,statut) VALUES (:pseudo,:mdp,:nom,:prenom,:email,:civilite,:ville,:code_postal,:adresse,0)",array(':pseudo' => $_POST['pseudo'],':mdp' => $_POST['mdp'],':nom' => $_POST['nom'],':prenom' => $_POST['prenom'],':email' => $_POST['email'],':civilite' => $_POST['civilite'],':ville' => $_POST['ville'],':code_postal' => $_POST['code_postal'],':adresse' => $_POST['adresse']));
