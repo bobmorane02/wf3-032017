@@ -76,7 +76,7 @@ if (!empty($_POST)) {    // si le formulaire est rempli
         if (empty($contenu)) {
             $_POST['mdp'] = md5($_POST['mdp']); // permet d'encrypter le mot de passe selon l'algorithme md5. Il faudra le faire
                                                 // également sur la page de connexion pour comparer les 2 mots cyptés
-            executeRequete("INSERT INTO membre (pseudo,mdp,nom,prenom,email,civilite,ville,code_postal,adresse,statut) VALUES (:pseudo,:mdp,:nom,:prenom,:email,:civilite,:ville,:code_postal,:adresse,0)",array(:pseudo => $_POST['pseudo'],:mdp => $_POST['mdp'],:nom => $_POST['nom'],:prenom => $_POST['prenom'],:email => $_POST['email'],:civilite => $_POST['civilite'],:ville => $_POST['ville'],:code_postal => $_POST['code_postal'],:adresse => $_POST['adresse'],));
+            executeRequete("INSERT INTO membre (pseudo,mdp,nom,prenom,email,civilite,ville,code_postal,adresse,statut) VALUES (:pseudo,:mdp,:nom,:prenom,:email,:civilite,:ville,:code_postal,:adresse,0)",array(':pseudo' => $_POST['pseudo'],':mdp' => $_POST['mdp'],':nom' => $_POST['nom'],':prenom' => $_POST['prenom'],':email' => $_POST['email'],':civilite' => $_POST['civilite'],':ville' => $_POST['ville'],':code_postal' => $_POST['code_postal'],':adresse' => $_POST['adresse']));
 
             $contenu .= '<div class="bg-success">Vous êtes inscrit. <a href="connexion.php">Cliquez ici pour vous connecter</a></div>';
             $inscription = true;    // pour ne plus afficher le formulaire d'inscription        
