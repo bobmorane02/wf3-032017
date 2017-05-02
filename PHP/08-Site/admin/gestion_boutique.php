@@ -33,6 +33,12 @@ if ($_POST) { // équivalent à !empty($_POST) car si $_POST est rempli, il vaut
 
     $photo_bdd = ''; // La photo subit un traitement spécifique en BDD. Cette variable contiendra son chemin d'accès.
 
+    // 9- modification de la photo (suite) :
+    if(isset($_GET['action']) && $_GET['action'] == "modification") {
+        // Si je suis en modification, je met en base la photo du champ hidden photo_actuelle du formaulaire
+        $photo_bdd = $_POST['photo_actuelle'];
+    }
+
 // 5- Traitement de la photo :
     if (!empty($_FILES['photo']['name'])) { // si une image a été uploadée, $_FILES est remplie
         // On constitue un nom unique pour le fichier photo :
@@ -85,14 +91,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'affichage' || !isset($_GET['ac
             $contenu .= '<tr>';
                 foreach($ligne as $index => $data){ // $index receptionne les indices, $data les valeurs
                     if ($index == 'photo') {
-                        $contenu .= '<td><img src="'.$data.'" width="70" height ="70"></td>';
+                        $contenu .= '<td><img class="img-rounded" src="'.$data.'" width="70" height ="70"></td>';
                     } else {
                         $contenu .= '<td>'.$data.'</td>';
                     }
                 }
-                $contenu .='<td>
-                                <a href="?action=modification&id_produit='.$ligne['id_produit'].'">modifier</a>
-                                <a href="?action=supprimer&id_produit='.$ligne['id_produit'].'" onclick="return(confirm(\'Etes-vous certain de vouloir supprimer ce produit ?\'));">supprimer</a>
+                $contenu .='<td style="vertical-align:middle;text-align:center;">
+                                <a class="btn btn-success btn-xs" href="?action=modification&id_produit='.$ligne['id_produit'].'">modifier</a>
+                                <a class="btn btn-danger btn-xs" href="?action=supprimer&id_produit='.$ligne['id_produit'].'" onclick="return(confirm(\'Etes-vous certain de vouloir supprimer ce produit ?\'));">supprimer</a>
                             </td>';
             $contenu .= '</tr>';
         }
@@ -107,49 +113,70 @@ echo $contenu;
 // 3- Formulaire HTML
 if (isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == 'modification')) :
 // Si on a demandé l'ajout ou la modification d'un produit on affiche le formulaire :
+
+// 8- Formulaire de modification avec présaisie des infos dans le formulaire :
+    if (isset($_GET['id_produit'])){
+        // Pour prérenplir le formulaire, on requête en BDD les infos du produit passé dans l'URL :
+        $resultat = executeRequete("SELECT * FROM produit WHERE id_produit = :id_produit",array(':id_produit'=>$_GET['id_produit']));
+        $produit_actuel = $resultat->fetch(PDO::FETCH_ASSOC);   // pas de while car un seul résultat
+
+    }
 ?>
 <h3>Formulaire d'ajout ou de modification d'un produit</h3>
 <form method="post" enctype="multipart/form-data" action="">         <!-- "multipart/form-data" permet d'uploader un fichier 
                                                                           et de générer une superglobale $_FILES  -->
-    <input type="hidden" id="id_produit" name="id_produit" value="0"><!-- champ caché qui réceptionne l'id_produit
+    <input type="hidden" id="id_produit" name="id_produit" value="<?php echo $produit_actuel['id_produit'] ?? 0; ?>"><!-- champ caché qui réceptionne l'id_produit
                                                                           nécessaire lors de la modification d'un produit existant -->
     <label for="reference">Référence</label><br>
-    <input type="text" id="reference" name="reference" value=""><br><br>
+    <input type="text" id="reference" name="reference" value="<?php echo $produit_actuel['reference'] ?? ''; ?>"><br><br>
 
     <label for="categorie">Catégorie</label><br>
-    <input type="text" id="categorie" name="categorie" value=""><br><br>
+    <input type="text" id="categorie" name="categorie" value="<?php echo $produit_actuel['categorie'] ?? ''; ?>"><br><br>
 
     <label for="titre">Titre</label><br>
-    <input type="text" id="titre" name="titre" value=""><br><br>
+    <input type="text" id="titre" name="titre" value="<?php echo $produit_actuel['titre'] ?? ''; ?>"><br><br>
 
     <label for="description">Description</label><br>
-    <textarea id="description" name="description"></textarea><br><br>
+    <textarea id="description" name="description"><?php echo $produit_actuel['description'] ?? ''; ?></textarea><br><br>
 
     <label for="couleur">Couleur</label><br>
-    <input type="text" id="couleur" name="couleur" value=""><br><br>
+    <input type="text" id="couleur" name="couleur" value="<?php echo $produit_actuel['couleur'] ?? ''; ?>"><br><br>
 
     <label>Taille</label>
     <select name="taille">
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>        
+        <option value="S" selected>S</option>
+        <option value="M" <?php if (isset($produit_actuel['taille']) && $produit_actuel['taille']=='M') echo 'selected'; ?>>M</option>
+        <option value="L" <?php if (isset($produit_actuel['taille']) && $produit_actuel['taille']=='L') echo 'selected'; ?>>L</option>
+        <option value="XL" <?php if (isset($produit_actuel['taille']) && $produit_actuel['taille']=='XL') echo 'selected'; ?>>XL</option>        
     </select><br><br>
 
     <label>Public</label>
     <input type="radio" name="public" value="m" checked> Homme
-    <input type="radio" name="public" value="f"> Femme
-    <input type="radio" name="public" value="mixte"> Mixte<br><br>
+    <input type="radio" name="public" value="f" <?php if (isset($produit_actuel['public']) && $produit_actuel['public']=='f') echo 'checked'; ?>> Femme
+    <input type="radio" name="public" value="mixte" <?php if (isset($produit_actuel['public']) && $produit_actuel['public']=='mixte') echo 'checked'; ?>> Mixte<br><br>
 
     <label for="photo">Photo</label><br><br>
     <input type="file" id="photo" name="photo"><br><br><!-- couplé avec l'attribut enctype="multipart/form-data" de la balise <form>,
                                                             le type 'file' permet d'uploader un fichier (ici une photo) -->
 
+    <!-- Modification de la photo -->
+    <?php
+        if (isset($produit_actuel['photo'])) {
+            echo '<i>Vous pouvez uploader une nouvelle photo</i><br>';
+            // Afficher la photo actuelle :
+            echo '<img src="'.$produit_actuel['photo'].'" width="90" height="90"><br>';
+            // Mettre le chemin de la photo dans un champ caché pour l'enregistrer en base :
+            echo '<input type="hidden" name="photo_actuelle" value="'.$produit_actuel['photo'].'"'; 
+            // Ce champ renseigne le $_POST['photo_actuelle'] qui va en base quand on soumet le formulaire de modification.
+            // Si on ne remplit pas le formulaire ici, le champ photo de base est remplacé par un vide, ce qui efface le chamin de la photo. 
+        }
+    ?>
+
     <label for="prix">Prix</label><br>
-    <input type="text" id="prix" name="prix" value=""><br><br>
+    <input type="text" id="prix" name="prix" value="<?php echo $produit_actuel['prix'] ?? 0; ?>"><br><br>
 
     <label for="stock">Stock</label><br>
-    <input type="text" id="stock" name="stock" value=""><br><br>
+    <input type="text" id="stock" name="stock" value="<?php echo $produit_actuel['stock'] ?? 0; ?>"><br><br>
 
     <input type="submit" value="valider" class="btn">
 </form>
