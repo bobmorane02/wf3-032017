@@ -18,8 +18,8 @@ if ($_POST) { // équivalent à !empty($_POST) car si $_POST est rempli, il vaut
     executeRequete("REPLACE INTO produit (id_produit,reference,categorie,titre,description,couleur,taille,public,photo,prix,stock) VALUES (:id_produit,:reference,:categorie,:titre,:description,:couleur,:taille,:public,:photo_bdd,:prix,:stock)",array('id_produit'=>$_POST['id_produit'],'reference'=>$_POST['reference'],'categorie'=>$_POST['categorie'],'titre'=>$_POST['titre'],'description'=>$_POST['description'],'couleur'=>$_POST['couleur'],'taille'=>$_POST['taille'],'public'=>$_POST['public'],':photo_bdd'=> $photo_bdd,'prix'=>$_POST['prix'],'stock'=>$_POST['id_produit'],));
 
     $contenu .= '<div class="bg-success">Le produit à été ajouté</div>';
-    $_GET['action'] = 'affichage';  // 
-    }
+    $_GET['action'] = 'affichage';  // On met la valeur 'affichage' dans $_GET['action'] pour afficher automatiquement
+    }                               // la table HTML des produits plus loin dans le script (point 6)
 
 // 2- Liens "affichage" et "ajout d'un produit" :
 $contenu .= '<ul class="nav nav-tabs">
