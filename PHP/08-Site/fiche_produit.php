@@ -42,20 +42,20 @@ if (isset($_GET['id_produit'])) {   // si existe l'indice id_produit dans l'URL
             $contenu .= '<form method="post" action="panier.php">';
                 $contenu .= '<input type="hidden" name="id_produit" value="'.$produit['id_produit'].'">';
 
-                $contenu .= '<select name="quantite" id="quantite" class="form-group-sm form-control-static">';
+                $contenu .= '<select name="quantite" id="quantite" class="form-control" style="display:initial;width:auto;">';
                     for  ($i = 1;$i <= $produit['stock'] && $i <= 5; $i++) {
                         $contenu .= "<option>$i</option>";
                     }
                 $contenu .= '</select>';
 
-                $contenu .= '<input type="submit" name="ajout_panier" value="ajouter au panier" class="btn btn-success" style="margin-left:10px;">';
+                $contenu .= '<input type="submit" name="ajout_panier" value="ajouter au panier" class="btn btn-success" style="margin-left:10px;vertical-align:top;">';
             $contenu .= '</form>';
         } else {
             $contenu .= '<p>Rupture de stock</p>';
         }
 
         // 4- Lien de retour vers la boutique
-        $contenu .= '<p><a href="boutique.php?categorie='.$produit['categorie'].'">Retour vers votre sélection</a></p>';
+        $contenu .= '<p><a href="boutique.php?categorie='.$produit['categorie'].'" class="btn btn-info" style="margin-top:5px;">Retour vers votre sélection</a></p>';
     $contenu .= '</div>';
 } else {
     // si l'indice id_produit n'est pas dans l'URL
@@ -63,7 +63,27 @@ if (isset($_GET['id_produit'])) {   // si existe l'indice id_produit dans l'URL
     exit();
 }
 
+// ---------------------------------------------
+// Exercice
+// ---------------------------------------------
+/*
+    Vous allez créer des suggestions de produits : affichez 2 produits (photo et titre aléatoirement) appartenant
+    à la catégorie du produit affiché dans la page détail. Ces produits doivent être différent du produit affiché.
+    La photo est cliquable et amène à la fiche produit.
 
+    Utilisez la variable $aside pour afficher le contenu
+*/
+
+$produits_suggeres = executeRequete("SELECT id_produit,titre,photo FROM produit WHERE id_produit != :id_produit AND categorie = :categorie ORDER BY RAND() LIMIT 2",array(':id_produit'=>$produit['id_produit'],':categorie'=>$produit['categorie']));
+
+while ($resultat = $produits_suggeres->fetch(PDO::FETCH_ASSOC)) {
+    $aside .= '<div class="col-sm-1 col-lg-1 col-md-1">';
+        $aside .= '<div class="thumbnail">';
+            $aside .= '<a href="fiche_produit.php?id_produit='.$resultat['id_produit'].'"><img src="'.$resultat['photo'].'" width="50" height="50"></a>';
+            $aside .= '<h4>'.$resultat['titre'].'</h4>';
+        $aside .= '</div>';
+    $aside .= '</div>';
+}
 
 // --------------------------------------------  AFFICHAGE --------------------------------------------
 require_once('inc/haut.inc.php');

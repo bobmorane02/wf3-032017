@@ -147,7 +147,8 @@ if (isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == 
         <option value="S" selected>S</option>
         <option value="M" <?php if (isset($produit_actuel['taille']) && $produit_actuel['taille']=='M') echo 'selected'; ?>>M</option>
         <option value="L" <?php if (isset($produit_actuel['taille']) && $produit_actuel['taille']=='L') echo 'selected'; ?>>L</option>
-        <option value="XL" <?php if (isset($produit_actuel['taille']) && $produit_actuel['taille']=='XL') echo 'selected'; ?>>XL</option>        
+        <option value="XL" <?php if (isset($produit_actuel['taille']) && $produit_actuel['taille']=='XL') echo 'selected'; ?>>XL</option>
+        <option value="NP" <?php if (isset($produit_actuel['taille']) && $produit_actuel['taille']=='NP') echo 'selected'; ?>>NP</option>         
     </select><br><br>
 
     <label>Public</label>
