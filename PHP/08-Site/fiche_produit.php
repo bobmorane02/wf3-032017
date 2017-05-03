@@ -35,7 +35,7 @@ if (isset($_GET['id_produit'])) {   // si existe l'indice id_produit dans l'URL
                     <p class="lead">Prix : '.$produit['prix'].' €</p>
                  </div>';
 
-    // 3- Affichage du formulaire d'jout au panier si stock > 0 :
+    // 3- Affichage du formulaire d'ajout au panier si stock > 0 :
     $contenu .= '<div class="col-md-4"';
         if ($produit['stock'] > 0) {
             // s'il y a du stock on met le bouton ajouter au panier
@@ -76,11 +76,12 @@ if (isset($_GET['id_produit'])) {   // si existe l'indice id_produit dans l'URL
 
 $produits_suggeres = executeRequete("SELECT id_produit,titre,photo FROM produit WHERE id_produit != :id_produit AND categorie = :categorie ORDER BY RAND() LIMIT 2",array(':id_produit'=>$produit['id_produit'],':categorie'=>$produit['categorie']));
 
+//$aside .= '<div class="col-sm-3"></div>';
 while ($resultat = $produits_suggeres->fetch(PDO::FETCH_ASSOC)) {
-    $aside .= '<div class="col-sm-1 col-lg-1 col-md-1">';
+    $aside .= '<div class="col-sm-1">';
         $aside .= '<div class="thumbnail">';
             $aside .= '<a href="fiche_produit.php?id_produit='.$resultat['id_produit'].'"><img src="'.$resultat['photo'].'" width="50" height="50"></a>';
-            $aside .= '<h4>'.$resultat['titre'].'</h4>';
+            $aside .= '<h5>'.$resultat['titre'].'</h5>';
         $aside .= '</div>';
     $aside .= '</div>';
 }
@@ -99,7 +100,5 @@ echo $contenu_gauche;   // recevera le pop up de confirmation d'ajout au panier
         </div>
         <?php echo $aside; // affiche les produits suggérés ?>
     </div>
-
-
 <?php
 require_once('inc/bas.inc.php');
