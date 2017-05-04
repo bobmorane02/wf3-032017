@@ -10,7 +10,7 @@ require_once('inc/init.inc.php');
 require_once('inc/haut.inc.php');
 echo $contenu;
 
-echo = '<h2>Voici votre panier</h2>';
+echo '<h2>Voici votre panier</h2>';
 
 if(empty($_SESSION['panier']['id_produit'])) {
     // si panier vide :
