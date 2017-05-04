@@ -15,7 +15,7 @@ if (isset($_GET['id_produit'])) {   // si existe l'indice id_produit dans l'URL
 
     // 2- Affichage du détail du produit :
     $produit = $resultat->fetch(PDO::FETCH_ASSOC);  // pas de while car 1 seul produit
-    $contenu .= '<div class="row"
+    $contenu .= '<div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">'.$produit['titre'].'</h1>
                     </div>
@@ -36,7 +36,7 @@ if (isset($_GET['id_produit'])) {   // si existe l'indice id_produit dans l'URL
                  </div>';
 
     // 3- Affichage du formulaire d'ajout au panier si stock > 0 :
-    $contenu .= '<div class="col-md-4"';
+    $contenu .= '<div class="col-md-4">';
         if ($produit['stock'] > 0) {
             // s'il y a du stock on met le bouton ajouter au panier
             $contenu .= '<form method="post" action="panier.php">';
@@ -78,7 +78,7 @@ $produits_suggeres = executeRequete("SELECT id_produit,titre,photo FROM produit 
 
 //$aside .= '<div class="col-sm-3"></div>';
 while ($resultat = $produits_suggeres->fetch(PDO::FETCH_ASSOC)) {
-    $aside .= '<div class="col-sm-1">';
+    $aside .= '<div class="col-sm-2">';
         $aside .= '<div class="thumbnail">';
             $aside .= '<a href="fiche_produit.php?id_produit='.$resultat['id_produit'].'"><img src="'.$resultat['photo'].'" width="50" height="50"></a>';
             $aside .= '<h5>'.$resultat['titre'].'</h5>';
@@ -91,7 +91,7 @@ require_once('inc/haut.inc.php');
 echo $contenu_gauche;   // recevera le pop up de confirmation d'ajout au panier
 ?>
     <div class="row">
-        <?php echo $contenu; // affiche la détail d'un produit?> 
+        <?php echo $contenu; // affiche la détail d'un produit?>
     </div>
 
     <div class="row">
