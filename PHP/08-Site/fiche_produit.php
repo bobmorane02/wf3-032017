@@ -81,7 +81,7 @@ while ($resultat = $produits_suggeres->fetch(PDO::FETCH_ASSOC)) {
     $aside .= '<div class="col-sm-2">';
         $aside .= '<div class="thumbnail">';
             $aside .= '<a href="fiche_produit.php?id_produit='.$resultat['id_produit'].'"><img src="'.$resultat['photo'].'" width="50" height="50"></a>';
-            $aside .= '<h5>'.$resultat['titre'].'</h5>';
+            $aside .= '<h5 style="text-align:center;">'.$resultat['titre'].'</h5>';
         $aside .= '</div>';
     $aside .= '</div>';
 }
