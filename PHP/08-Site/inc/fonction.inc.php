@@ -91,11 +91,24 @@ function montantTotal() {
 function retirerProduitDuPanier($id_produit_a_supprimer) {
     $position_produit = array_search($id_produit_a_supprimer,$_SESSION['panier']['id_produit']);
     if ($position_produit !== false) {
-        // Si le produit est bien dans le panier on coupe sa ligne
-        array_splice($_SESSION['panier']['titre'],$position_produit,1); // efface la portion du tableau à partir de
-                                                                        // de l'indice indiqué par $position_produit et sur 1 ligne
-        array_splice($_SESSION['panier']['id_produit'],$position_produit,1);
-        array_splice($_SESSION['panier']['quantite'],$position_produit,1);
-        array_splice($_SESSION['panier']['prix'],$position_produit,1);                                                                        
+
+        if ($_SESSION['panier']['quantite'][$position_produit] > 1) {
+            $_SESSION['panier']['quantite'][$position_produit]--;
+        } else {
+            // Si le produit est bien dans le panier on coupe sa ligne
+            array_splice($_SESSION['panier']['titre'],$position_produit,1); // efface la portion du tableau à partir de
+                                                                            // de l'indice indiqué par $position_produit et sur 1 ligne
+            array_splice($_SESSION['panier']['id_produit'],$position_produit,1);
+            array_splice($_SESSION['panier']['quantite'],$position_produit,1);
+            array_splice($_SESSION['panier']['prix'],$position_produit,1);                                                                        
+        }
     }
+}
+
+// ------------------------------------------------
+// Exercice : créer une fonction qui retourne le nombre de produit différents dans le panier. Et afficher le résultat à côté du lien
+// panier dans le menu de navigation, exemple : panier (3). Si le panier est vide, vous affichez panier (0).
+
+function nombreProduitsPanier () {  
+    return isset($_SESSION['panier'])?sizeof($_SESSION['panier']['id_produit']):0;
 }

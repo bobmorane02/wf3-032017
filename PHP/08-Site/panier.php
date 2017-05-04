@@ -10,7 +10,9 @@ if (isset($_POST['ajout_panier'])) {    // Si on à cliqué sur "ajouter au pani
 
     ajouterProduitDansPanier($produit['titre'],$_POST['id_produit'],$_POST['quantite'],$produit['prix']);
 
-    // ...
+    // On redirige vers la fiche produit en indiquant que le produit a bien été ajouté au panier
+    header('location:fiche_produit.php?statut_produit=ajoute&id_produit='.$_POST['id_produit']);
+    exit();
 }
 
 // Vider le panier
@@ -43,19 +45,14 @@ if (isset($_POST['valider'])) {
         $prix = $_SESSION['panier']['prix'][$i];
 
         executeRequete("INSERT INTO details_commande (id_commande,id_produit,quantite,prix) VALUES (:id_commande,:id_produit,:quantite,:prix)",array(':id_commande'=>$id_commande,':id_produit'=>$id_produit,':quantite'=>$quantite,':prix'=>$prix));
+
+        // Mise à jour des stocks suite à la commande :
+        executeRequete ("UPDATE produit SET stock = stock - :quantite WHERE id_produit = :id_produit",array(':quantite'=>$quantite,':id_produit'=>$id_produit));
     }
 
-    // Mise à jour des stocks suite à la commande :
-    for ($i=0; $i < sizeof($_SESSION['panier']['id_produit']);$i++) {
-        $quantite = $_SESSION['panier']['quantite'][$i];
-        $stock = executeRequete("SELECT stock FROM produit WHERE id_produit = ".$_SESSION['panier']['id_produit'][$i]);
-        $result = $stock->fetch(PDO::FETCH_ASSOC);
-        $nouveau_stock = $result['stock'] - $quantite;
-        
-        echo '<pre>';print_r($result);echo '</pre>';
-        echo $nouveau_stock;
-    }
-    //unset ($_SESSION['panier']);
+    unset ($_SESSION['panier']);    // on supprime le panier vide
+
+    $contenu .= '<div class="bg-success">Merci pour votre commande, le numéro de suivi est le '.$id_commande.'</div>';
 }
 
 // --------------------------------------------  AFFICHAGE --------------------------------------------
@@ -120,6 +117,7 @@ if(empty($_SESSION['panier']['id_produit'])) {
             </tr>';
         
     echo '</table>';
+
 } // fin du else
 
 require_once('inc/bas.inc.php');

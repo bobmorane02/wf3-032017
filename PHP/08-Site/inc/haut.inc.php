@@ -42,7 +42,7 @@
                             echo '<li><a href="'.RACINE_SITE.'connexion.php?action=connexion">Connecter</a></li>';
                         }
 
-                        echo '<li><a href="'.RACINE_SITE.'panier.php">Panier</a></li>';
+                        echo '<li><a href="'.RACINE_SITE.'panier.php">Panier ('.nombreProduitsPanier().')</a></li>';
 
                         // Menu admin :
                         if (internauteEstConnecteEtEstAdmin()) {

@@ -63,6 +63,25 @@ if (isset($_GET['id_produit'])) {   // si existe l'indice id_produit dans l'URL
     exit();
 }
 
+// Affichage d'une fenetre modale pour confirmer l'ajout du produit au panier :
+if (isset($_GET['statut_produit']) && $_GET['statut_produit'] == 'ajoute') {
+
+    // On met dans une variable le HTML de la fenétremodale pour l'afficher ensuite :
+    $contenu_gauche = '<div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Le produit a bien été ajouté au panier</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><a href="panier.php" class="btn btn-success btn-xs col-xs-3" style="float:none">Voir le panier</a></p>
+                                        <p><a href="boutique.php" class="btn btn-info btn-xs col-xs-3" style="float:none">Continuer ses achats</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>';
+}
+
 // ---------------------------------------------
 // Exercice
 // ---------------------------------------------
@@ -100,5 +119,11 @@ echo $contenu_gauche;   // recevera le pop up de confirmation d'ajout au panier
         </div>
         <?php echo $aside; // affiche les produits suggérés ?>
     </div>
+    <script>
+        $(document).ready(function(){
+            // affiche la fentêtre modale :
+            $("#myModal").modal("show");   // fonction d'affichage de la modale BOOTSTRAP
+        });
+    </script>
 <?php
 require_once('inc/bas.inc.php');
