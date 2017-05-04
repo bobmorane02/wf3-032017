@@ -1,7 +1,13 @@
 <?php
 require_once('inc/init.inc.php');
 // -------------------------------------------- TRAITEMENT --------------------------------------------
+// Ajouter un produit au panier
 
+if (isset($_POST['ajout_panier'])) {    // Si on à cliqué sur "ajouter au panier", alors on séléctionne en BDD
+                                        // les infos du produit ajouté (prix et titre)
+    $resultat = executeRequete("SELECT id_produit,titre,prix FROM produit WHERE id_produit = :id_produit",array(':id_produit'=>$_POST['id_produit']));
+    $produit = $resultat->fetch(PDO::FETCH_ASSOC);  // pas de while car produit unique
+}
 
 
 
@@ -56,7 +62,7 @@ if(empty($_SESSION['panier']['id_produit'])) {
         // Membre non connecté, on l'invite à s'incrire ou se connecter
             echo '<tr class="text-center">
                         <td colspan="5">
-                            Veuillez vous <a href="inscription.php">instcrire</a> ou vous <a href="connexion.php">connecter</a> afin de valider le panier
+                            Veuillez vous <a href="inscription.php">inscrire</a> ou vous <a href="connexion.php">connecter</a> afin de valider le panier
                         </td>
                   </tr>';
         }

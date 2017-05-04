@@ -63,7 +63,7 @@ function creationDuPanier() {
 
 function ajouterProduitDansPanier($titre,$id_produit,$quantite,$prix) { // ces arguments sont en provenance de panier.php_ini_loaded_file
     creationDuPanier(); // pour créer la structure si elle n'existe pas
-    $position_produit = array_search($id_produit,$_SESSION['panier']['id_produit']);    // array_search() retourne la position dans l'array
+    $position_produit = array_search($id_produit,$_SESSION['panier']['id_produit']);    // array_search() retourne l'indice dans l'array
                                                                                         // $_SESSION['panier'] de l'id_produit s'il existe déja
                                                                                         // sinon retourne FALSE
     if ($position_produit === false) {
@@ -76,4 +76,14 @@ function ajouterProduitDansPanier($titre,$id_produit,$quantite,$prix) { // ces a
         // si le produit existe, on ajoute la quentité nouvelle à la quantité déjà présente dans le panier
         $_SESSION['panier']['quantite']['position_produit'] += $quantite;
     }
+}
+
+function montantTotal() {
+    $total = 0;    // contient le total de la commande
+
+    for ($i=0; $i<sizeof($_SESSION['panier']['id_produit']);$i++) {
+    // Tant que $i est inférieur au nombre de produits dans le panier, on additionne le prix fois la quentité :
+        $total += $_SESSION['panier']['quantite'][$i] * $_SESSION['panier']['prix'][$i];  
+    }
+    return round($total,2); // On retourne le total arrondi à 2 chiffres aprés la virgule
 }
