@@ -22,7 +22,8 @@
 
 */
 // -------------------------------------- Traitement --------------------------------------------
-$message ='';
+$message = '';
+$type_contact = array('ami','famille','professionnel','autre');
 
 $pdo = new PDO('mysql:host=localhost;dbname=contacts','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
@@ -47,21 +48,22 @@ if (!empty($_POST)){
 	if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
 		$message .= '<p>Email invalide</p>';
 	}
-	if ($_POST['type'] != 'ami' && $_POST['type'] != 'famille' && $_POST['type'] != 'professionnel' && $_POST['type'] != 'autre') {
+	if (!in_array($_POST['type'],$type_contact)) {
 		$message .= '<p>Type invalide</p>';
 	}
 	if (empty($message)) {
 		settype($_POST['telephone'],'integer');
 		$resultat = $pdo->prepare("INSERT INTO contact (nom,prenom,telephone,annee_rencontre,email,type_contact) VALUES (:nom,:prenom,:telephone,:annee_rencontre,:email,:type_contact)");
-		 $succes= $resultat->execute(array(':nom'=>$_POST['nom'],':prenom'=>$_POST['prenom'],':telephone'=>$_POST['telephone'],':annee_rencontre'=>$_POST['annee'],':email'=>$_POST['email'],':type_contact'=>$_POST['type']));
-
-		$message .= '<p>'.$succes.'Saisie valide</p>';
+		 $succes = $resultat->execute(array(':nom'=>$_POST['nom'],':prenom'=>$_POST['prenom'],':telephone'=>$_POST['telephone'],':annee_rencontre'=>$_POST['annee'],':email'=>$_POST['email'],':type_contact'=>$_POST['type']));
+		 if ($succes){
+			$message .= '<p>Saisie valide</p>';
+		 } else {
+			$message .= '<p>Probléme d\'enregistrement</p>';
+		 }
 	}
 } else {
 	$message .= '<p>Veuillez remplir le formulaire !</p>';
 }
-
-
 ?>
 
 <!-- --------------------------------------- Affichage ------------------------------------------ -->
@@ -95,10 +97,11 @@ if (!empty($_POST)){
 		<input type="text" id="email" name="email" value=""><br>
 		<label for="type">Type</label>
 		<select name="type" id="type">
-			<option value="ami">Ami</option>
-			<option value="famille">Famille</option>
-			<option value="professionnel">Professionnel</option>
-			<option value="autre">Autre</option>
+			<?php
+				foreach ($type_contact as $valeur) {
+					echo '<option value="'.$valeur.'">'.ucfirst($valeur).'</option>';
+				}
+			?>
 		</select><br>
 		<input type="submit" name="ajouter" value="Ajouter">
 	</form>	

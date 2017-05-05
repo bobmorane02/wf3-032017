@@ -7,10 +7,19 @@
 
 
 */
+$ligne = '';
 
 $pdo = new PDO('mysql:host=localhost;dbname=contacts','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-$pdo->prepare("SELECT * FROM contact");
-$resultat = $pdo->execute();
+$r = $pdo->prepare("SELECT * FROM contact");
+if ($r->execute()) {
+	$valeurs = $r->fetchall(PDO::FETCH_ASSOC);
+}
+
+if (!empty($_GET)){
+		foreach ($valeurs[$_GET['contact']] as $index => $valeur) {
+			$ligne .= '<li>'.$index.' : '.$valeur.'</li>';
+		}	
+}
 ?>
 <!-- ----------------------------------- Affichage --------------------------------------- -->
 <!DOCTYPE html>
@@ -22,12 +31,32 @@ $resultat = $pdo->execute();
 	<title>Document</title>
 </head>
 <body>
+	<h1>Détail des contacts</h1>
 	<table>
 		<tr>
-			<?php 
-				
-			?>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Téléphone</th>
+			<th></th>
 		</tr>
+		<?php
+			for ($i=0;$i<sizeof($valeurs);$i++){
+				echo '<tr>
+						<td>'.$valeurs[$i]['nom'].'</td>
+						<td>'.$valeurs[$i]['prenom'].'</td>
+						<td>'.$valeurs[$i]['telephone'].'</td>
+						<td><a href="?contact='.$i.'">Autres infos.</a></td>
+					 </tr>';
+			}
+		?>
 	</table>
+	<?php
+		if (!empty($ligne)) {
+			echo '<h1>Détails du contact</h1>
+					<ul>
+						'.$ligne.'
+				   </ul>';
+		}
+	?>
 </body>
 </html>
