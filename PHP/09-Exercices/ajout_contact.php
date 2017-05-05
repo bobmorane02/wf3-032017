@@ -24,7 +24,14 @@
 // -------------------------------------- Traitement --------------------------------------------
 $message ='';
 
+$pdo = new PDO('mysql:host=localhost;dbname=contacts','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+
 if (!empty($_POST)){
+
+	foreach ($_POST as $index => $valeur){
+		$_POST[$index] = htmlspecialchars($valeur,ENT_QUOTES);
+	}
+	
 	if (strlen($_POST['nom'])<2){
 		$message .= '<p>Nom invalide</p>';
 	} 
@@ -44,7 +51,11 @@ if (!empty($_POST)){
 		$message .= '<p>Type invalide</p>';
 	}
 	if (empty($message)) {
-		$message .= 'Saisie valide';
+		settype($_POST['telephone'],'integer');
+		$resultat = $pdo->prepare("INSERT INTO contact (nom,prenom,telephone,annee_rencontre,email,type_contact) VALUES (:nom,:prenom,:telephone,:annee_rencontre,:email,:type_contact)");
+		 $succes= $resultat->execute(array(':nom'=>$_POST['nom'],':prenom'=>$_POST['prenom'],':telephone'=>$_POST['telephone'],':annee_rencontre'=>$_POST['annee'],':email'=>$_POST['email'],':type_contact'=>$_POST['type']));
+
+		$message .= '<p>'.$succes.'Saisie valide</p>';
 	}
 } else {
 	$message .= '<p>Veuillez remplir le formulaire !</p>';
