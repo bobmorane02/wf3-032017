@@ -7,3 +7,27 @@
 
 
 */
+
+$pdo = new PDO('mysql:host=localhost;dbname=contacts','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+$pdo->prepare("SELECT * FROM contact");
+$resultat = $pdo->execute();
+?>
+<!-- ----------------------------------- Affichage --------------------------------------- -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<?php 
+				
+			?>
+		</tr>
+	</table>
+</body>
+</html>

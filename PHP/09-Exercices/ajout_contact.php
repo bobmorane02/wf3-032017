@@ -76,7 +76,7 @@ if (!empty($_POST)){
 <body>
 	<h1>Création d'un nouveau contact</h1>
 	<?php echo $message?>
-	<form method="post" action="">
+	<form method="post" action="" style="display:inline-grid;">
 		<label for="nom">Nom</label>
 		<input type="text" id="nom" name="nom" value=""><br>
 		<label for="prenom">Prénom</label>
