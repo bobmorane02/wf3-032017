@@ -7,10 +7,21 @@
         pas le cas.
 */
 
+// vieille version utiliser plutôt l'objet DateTime 
 function dateConvert($date,$format) {
         switch (strtoupper($format)) {
             case 'FR' : return strftime('%d-%m-%Y',strtotime($date));
             case 'US' : return strftime('%Y-%m-%d',strtotime($date));
+            default : return 'Le format demandé n\'est pas géré';
+        }
+}
+
+// C'est mieux comme ça !
+function newDateTime($date,$format){
+    $ObjDate = new DateTime($date);
+    switch (strtoupper($format)) {
+            case 'FR' : return $ObjDate->format('d-m-Y');
+            case 'US' : return $ObjDate->format('Y-m-d');
             default : return 'Le format demandé n\'est pas géré';
         }
 }
