@@ -8,7 +8,7 @@ INSERT INTO abonne (prenom) VALUES ('test');
 SELECT LAST_INSERT_ID(); -- Affiche le dernier identifiant insérer.
 
 -- Fonctions de dates :
-SELECT *,DATE_FORMAT(date_rendu,'%d-%m-%Y') AS date_FR FROM emprunt; -- met les dates du champ date_FR au format frnaçais JJ-MM-AAAA
+SELECT *,DATE_FORMAT(date_rendu,'%d-%m-%Y') AS date_FR FROM emprunt; -- met les dates du champ date_FR au format français JJ-MM-AAAA
 
 SELECT NOW(); -- affiche la date et l'heure courante
 

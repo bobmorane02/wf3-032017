@@ -27,19 +27,25 @@ $contenu .= '</div>';
     1- Afficher le suivi des commandes du membre (s'il y en a) dans une liste <ul><li>
        id_commande, date et état de la commande. S'il n'y en à pas, on affiche "Aucune commande en cours"
 
-    2- ..
+    2- 
 
 */
+$id_membre = $_SESSION['membre']['id_membre'];
+$commande_en_court = executeRequete("SELECT id_commande,DATE_FORMAT(date_enregistrement,'%d-%m-%Y') AS date_commande,etat FROM commande WHERE id_membre = '$id_membre'");
+// dans une requête SQL, on met les variables entre quotes. Pour mémoire, si on y met un array, celui-ci perd ses quotes autour de l'indice. A savoir : on ne peut pas le 
+// faire avec un array multidimensionnel
 
-$commande_en_court = executeRequete("SELECT id_commande,date_enregistrement,etat FROM commande WHERE id_membre = :id_membre",array('id_membre'=>$_SESSION['membre']['id_membre']));
-while ($resultat = $commande_en_court->fetch(PDO::FETCH_ASSOC)) {
-    $contenu .= '<ul>
-                    <li>N° de commande : '.$resultat['id_commande'].'</li>
-                    <li>Date de commande : '.$resultat['date_enregistrement'].'</li>
-                    <li>Etat de commande : '.$resultat['etat'].'</li>
-                 </ul>';
+if ($commande_en_court->rowCount()) {
+    while ($resultat = $commande_en_court->fetch(PDO::FETCH_ASSOC)) {
+            $contenu .= '<ul class="col-xs-4 list-unstyled" style="float:none;padding-left:0px;">
+                            <li class="bg-info">N° de commande : '.$resultat['id_commande'].'</li>
+                            <li>Date de commande : '.$resultat['date_commande'].'</li>
+                            <li>Etat de commande : '.$resultat['etat'].'</li>
+                        </ul>';
+    }  
+} else {
+    $contenu .= '<div class="col-xs-4 bg-info" style="float:none;padding-left:0px;">Aucune commande en cours</div>';
 }
-
 // --------------------------------------------  AFFICHAGE --------------------------------------------
 require_once('inc/haut.inc.php');
 echo $contenu;
