@@ -26,4 +26,4 @@ function newDateTime($date,$format){
         }
 }
 
-echo dateConvert('2017-05-05','fr');
+echo dateConvert('05-05-2017','us');
