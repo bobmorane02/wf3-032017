@@ -15,7 +15,7 @@ $message ='';
 $capitales = array ('France'=>'Paris','Italie'=>'Rome','Espagne'=>'Madrid','inconnu'=>'blablabla','Allemage'=>'Berlin');
 
 foreach ($capitales as $pays => $capitale) {
-    $message .= $pays == 'inconnu'?'<p>Ca n\'existe pas !</p>':"<p>La capitale $capitale se situe en $pays</p>";
+    $message .= ($pays == 'inconnu')?"<p>Ca n'existe pas !</p>":"<p>La capitale $capitale se situe en $pays</p>";
 }
 
 // ---------------------------------- affichage  ---------------------------------------
