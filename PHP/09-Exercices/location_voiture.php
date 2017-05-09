@@ -12,6 +12,7 @@
 
 // -------------------------------------------- Traitement ----------------------------------------------
 $message = '';
+$cat = array('A','B','C','D');
 
 function prixLoc ($nb_jours,$cat) {
     switch ($cat) {
@@ -28,8 +29,7 @@ function prixLoc ($nb_jours,$cat) {
 }
 
 if (!empty($_POST)) {
-    $cat = array('A','B','C','D');
-    $jours = intval($_POST['nbj']);
+    $jours = intval($_POST['nbj']); // Ou alors faire un cast : (int)$_POST['nbj'].
 
     if ( !in_array($_POST['categorie'],$cat)) {
         $message .= nl2br("Catégorie invalide\n");
@@ -66,15 +66,16 @@ if (!empty($_POST)) {
         <p>
             <label for="categorie">Catégorie de Véhicule</label>
             <select name="categorie" id="categorie">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
+                <?php
+                    foreach ($cat as $valeur) {
+                        echo "<option value=$valeur>$valeur</option>";
+                    }
+                ?>
             </select>
         </p>
         <p>
             <label for="nbj">Nombre de jours</label>
-            <input type="text" id="nbj" name="nbj" value="0">
+            <input type="text" id="nbj" name="nbj" value="1">
         </p>
         <p>
             <input type="submit" value="Valider">
