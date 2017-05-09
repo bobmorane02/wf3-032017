@@ -19,11 +19,11 @@ function prixLoc ($nb_jours,$cat) {
             case 'B' : $total = $nb_jours*50;break;
             case 'C' : $total = $nb_jours*70;break;
             default  : $total = $nb_jours*90;
-        }
+    }
 
-        if ($total > 150) {
-            $total = $total - ($total*10)/100;
-        }
+    if ($total > 150) {
+        $total = $total - ($total*10)/100;
+    }
     return $total;
 }
 
