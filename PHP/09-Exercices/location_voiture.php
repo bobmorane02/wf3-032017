@@ -13,8 +13,18 @@
 // -------------------------------------------- Traitement ----------------------------------------------
 $message = '';
 
-function prixLoc ($nb_jours,$prix) {
-    return $nb_jours * $prix;
+function prixLoc ($nb_jours,$cat) {
+    switch ($cat) {
+            case 'A' : $total = $nb_jours*30;break;
+            case 'B' : $total = $nb_jours*50;break;
+            case 'C' : $total = $nb_jours*70;break;
+            default  : $total = $nb_jours*90;
+        }
+
+        if ($total > 150) {
+            $total = $total - ($total*10)/100;
+        }
+    return $total;
 }
 
 if (!empty($_POST)) {
@@ -30,18 +40,8 @@ if (!empty($_POST)) {
     }
 
     if (empty($message)) {
-        switch ($_POST['categorie']) {
-            case 'A' : $total = prixLoc($jours,30);break;
-            case 'B' : $total = prixLoc($jours,50);break;
-            case 'C' : $total = prixLoc($jours,70);break;
-            default  : $total = prixLoc($jours,90);
-        }
-
-        if ($total > 150) {
-            $total = $total - ($total*10)/100;
-        }
-
-        $message .= "La location de votre véhicule sera de $total euros pour $jours jour(s).";
+        $prix = prixLoc($jours,$_POST['categorie']);
+        $message .= "La location de votre véhicule sera de $prix euros pour $jours jour(s).";
     }
 
 } else {
