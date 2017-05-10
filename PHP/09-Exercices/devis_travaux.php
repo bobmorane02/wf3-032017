@@ -29,9 +29,8 @@ function montantTTC ($montant,$periode,$rem) {
 }
 
 if (!empty($_POST)) {
-	$_POST['montant'] = (int)$_POST['montant'];
 
-	if ($_POST['montant'] <= 0) {
+	if (!is_numeric($_POST['montant']) || $_POST['montant'] <= 0) {
 		$message .= '<p>Le montant de vos travaux est incorrect</p>';
 	}
 
@@ -39,7 +38,7 @@ if (!empty($_POST)) {
 		$message .= '<p>La date de construction est incorrecte</p>';
 	}
 
-	if (!empty($_POST['remise']) && $_POST['remise'] != 'abc' ) {
+	if (!empty($_POST['remise']) && $_POST['remise'] != 'abc') {
 		$message .= '<p>Votre coupon de remise n\'est pas valide</p>';
 
 	} elseif (!empty($_POST['remise']) && $_POST['remise'] == 'abc'){
