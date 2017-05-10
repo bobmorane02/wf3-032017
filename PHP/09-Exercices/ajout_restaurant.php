@@ -32,7 +32,7 @@
 // ---------------------------------------------- Traitement -----------------------------------------------
 $message = '';
 $liste = '';
-$detail = '';
+$detail = '<h2>Détails</h2><ul>';
 
 $type = array ('gastronomique','brasserie','pizzeria','autre');
 
@@ -85,6 +85,7 @@ if (!empty($_POST)){
 
 
 $res = $pdo->query("SELECT * FROM restaurant");
+
 	while ($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
 		$liste .= '<tr><td>'.$ligne['nom'].'</td><td>'.$ligne['telephone'].'</td><td><a href="?id='.$ligne['id_restaurant'].'">Autres infos</a></td></tr>';
 	}
@@ -95,6 +96,7 @@ if (!empty($_GET['id'])) {
 	foreach ($details as $index => $valeur ) {
 		$detail .= '<li>'.$index.' : '.$valeur.'</li>';
 	}
+	$detail .= '</ul>';
 }
 
 // ---------------------------------------------- Affichage  -----------------------------------------------
@@ -145,7 +147,7 @@ if (!empty($_GET['id'])) {
 		<p></p>
 		<input type="submit" value="Valider">
 	</form>
-	<p></p>
+	<h1>Liste des restaurants</h1>
 	<table>
 		<tr>
 			<th>Nom</th>
@@ -157,11 +159,9 @@ if (!empty($_GET['id'])) {
 		?>
 	</table>
 	<div>
-		<ul>
-			<?php 
-				echo $detail;
-			 ?>
-		</ul>
+		<?php 
+			echo $detail;
+		?>
 	</div>
 </body>
 </html>
