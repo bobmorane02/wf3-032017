@@ -78,7 +78,7 @@ if (!empty($_POST)) {
 		<div>Date de construction</div>
 		<div><input type="radio" name="dateC" value="moins" checked>5 ans ou moins</div>
 		<div><input type="radio" name="dateC" value="plus">plus de 5 ans</div>
-		<div>Votre code de remise<input name="remise" type="text"></div>
+		<div>Votre code de remise <input name="remise" type="text"></div>
 		<p><input type="submit" value="Valider"></p>
 	</form>
 </body>
