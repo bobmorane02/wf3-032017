@@ -32,7 +32,7 @@
 // ---------------------------------------------- Traitement -----------------------------------------------
 $message = '';
 $liste = '';
-$detail = '<h2>Détails</h2><ul>';
+$detail = '';
 
 $type = array ('gastronomique','brasserie','pizzeria','autre');
 
@@ -91,6 +91,7 @@ $res = $pdo->query("SELECT * FROM restaurant");
 	}
 
 if (!empty($_GET['id'])) {
+	$detail = '<h2>Détails</h2><ul>';
 	$res = $pdo->query("SELECT * FROM restaurant WHERE id_restaurant='$_GET[id]'");
 	$details = $res->fetch(PDO::FETCH_ASSOC);
 	foreach ($details as $index => $valeur ) {
