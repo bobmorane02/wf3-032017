@@ -83,7 +83,6 @@ if (!empty($_POST)){
 
 }
 
-
 $res = $pdo->query("SELECT * FROM restaurant");
 
 	while ($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
