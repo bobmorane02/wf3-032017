@@ -20,4 +20,4 @@
             after_title:    balise de fin qui englobera chaque titre placé dans cette région
     */
 
-    dynamic_sidebar ();
+    dynamic_sidebar ('region-du-bas');

@@ -1776,3 +1776,8 @@ img#wpstats {
 		margin-left: 3.57142857rem;
 	}
 }
+
+.menu-administratif li{
+	display: inline-block;
+	margin: 0 20px;
+}
