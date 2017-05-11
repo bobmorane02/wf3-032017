@@ -6,21 +6,21 @@ $message ='';   // Initialisation de la variable d'affichage'
 $pdo = new PDO('mysql:host=localhost;dbname=exercice_3','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
 if (!empty($_GET)) {
-    $resultat = $pdo->prepare("SELECT * FROM movies WHERE id_movie = :id");
-     $resultat->bindParam (':id',$_GET['id'],PDO::PARAM_INT);
-     $res = $resultat->execute();
-
-     if (!$res) {
-         $message .= 'Erreur le film n\'existe pas !';
-     }
-
-     $r = $resultat->fetch(PDO::FETCH_ASSOC);
      
-     foreach ($r as $index => $valeur) {
-         $message .= "<li>$index : $valeur</li>";
-     }
+     if ((int)$_GET['id'] != 0) {
+            $resultat = $pdo->prepare("SELECT * FROM movies WHERE id_movie = :id");
+            $resultat->bindParam (':id',$_GET['id'],PDO::PARAM_INT);
+            $res = $resultat->execute();
+            
+            $r = $resultat->fetch(PDO::FETCH_ASSOC);
+            
+            foreach ($r as $index => $valeur) {
+                $message .= "<li>$index : $valeur</li>";
+            }
+        } else {
+        $message .= 'Erreur le film n\'existe pas !';
+        }
 }
-
 // -------------------------------------------- Affichage  ------------------------------------------------
 ?>
 
