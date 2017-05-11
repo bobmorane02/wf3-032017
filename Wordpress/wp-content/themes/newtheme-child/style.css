@@ -1,0 +1,81 @@
+/*
+ Theme Name:    Newtheme Child
+ Theme URI:     http://example.com/newtheme-child/
+ Description:   newtheme Child Theme
+ Author:        Moi
+ Author URI:    http://moi.com
+ Template:      twentytwelve
+ Version:       1.0.0
+ Licence:       GNU General Public Licence v2 or later
+ Licence URI:   http://www.gnu.org/licences/gpl-2.0.html
+ Tags:          light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:   nextheme-child
+*/
+
+.menu-administratif li {
+	display: inline-block;
+	margin: 0 20px;
+}
+
+.haut-gauche {
+	float: left;
+}
+
+.haut-gauche > img {
+	box-shadow: none;
+}
+
+.haut-gauche:after {
+	content: "";
+	clear: both;
+}
+
+.haut-droite {
+	float: right;
+}
+
+.haut-droite:after {
+	content: "";
+	clear: both;
+}
+
+.haut-droite h1 {
+	font-size : 1.2rem;
+}
+
+.haut-droite + h1,.haut-droite ~ h2 {
+	width: 60%;
+	display: inline-block;
+	margin-left: 1rem;
+}
+
+.mdl-3-cl-gauche {
+	float: left;
+	width: 15%;
+	border-right: 1px solid #c0c0c0;
+	padding: 20px;
+	min-height: 700px;
+}
+
+.mdl-3-cl-centre {
+	float: left;
+	width: 44%;
+	padding: 20px;
+	min-height: 700px;	
+}
+
+.mdl-3-cl-droite {
+	float: left;
+	width: 28%;
+	padding: 20px;
+	min-height: 700px;	
+	border-left: 1px solid #c0c0c0;	
+}
+
+.clear{
+	clear: both;
+}
+
+.mdl-3-cl-droite > .widget-area {
+	width: 100%;
+}
