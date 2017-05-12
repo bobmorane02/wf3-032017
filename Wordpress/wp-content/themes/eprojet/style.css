@@ -62,6 +62,7 @@ header a {
 header a:hover {
     background: #3e88be;
     transition: 1s;
+    text-decoration: none;
 }
 
 header #menu-principal {
