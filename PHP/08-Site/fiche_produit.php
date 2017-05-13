@@ -77,7 +77,7 @@ if (isset($_GET['statut_produit']) && $_GET['statut_produit'] == 'ajoute') {
                                         <p><a href="panier.php" class="btn btn-success btn-xs col-xs-3" style="float:none">Voir le panier</a></p>
                                         <p><a href="boutique.php" class="btn btn-info btn-xs col-xs-3" style="float:none">Continuer ses achats</a></p>
                                     </div>
-                                </div>
+                             </div>
                             </div>
                        </div>';
 }
