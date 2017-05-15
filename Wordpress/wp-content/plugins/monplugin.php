@@ -3,7 +3,7 @@
     Plugin Name: MonPlugin
     Plugin URI: http://www.test.fr
     Description: Plugin de personalisation de widget
-    Vaersion: 1.0
+    Version: 1.0
     Author: Moi
     Licence: -
 */
