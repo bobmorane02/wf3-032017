@@ -34,3 +34,28 @@
             register_nav_menu('primary', __('Primary Menu','eprojet'));
         }
     }
+
+    function showCategory() {
+        $cat = '';
+        $categories = get_categories(array('category_name'=>'ville','orderby'=>'name','exclude'=>1)); // on exclue la catégorie "non classé".
+        foreach($categories as $category) {
+            $cat .= '<a href"'.get_category_link($category->term_id).'">'.$category->name.'</a><br>';
+        }
+        return $cat;
+    }
+
+    // Fontion permettant de récuperer tous les contenus en fonction d'une catégorie
+    function showCategoryByPostType() {
+        $current_cat= get_query_var('cat');
+        query_posts("post_type=$type&cat=$current_cat");
+    }
+
+    // fonction permettant de récupérer toutes les images déposées dans le corps d'un texte.
+    function getImage() {
+        $content = '';
+        $image = get_children('post_parent='.get_the_ID().'&post_type=attachement&post_mine_type=image&post_per_page=10');
+        foreach ($image as $image_id => $a) {
+            $content .= wp_get_attachement($image_id,'medium');
+        }
+        return $content;
+    }

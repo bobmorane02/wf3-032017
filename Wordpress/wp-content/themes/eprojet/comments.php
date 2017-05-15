@@ -14,8 +14,8 @@
          <?php wp_list_comments(); ?>
 
          <?php if(comments_open()): ?>
-            <?php comments_form(array('comment_notes_after'=>'')); ?>
+            <?php comment_form(array('comment_notes_after'=>'')); ?>
          <?php elseif (have_comments()) : ?>
             <?php _e('comments are closed','eprojet'); ?>
-         <?php endif; ?>
+         <?php endif; ?>         
 </div>

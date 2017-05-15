@@ -30,3 +30,9 @@
     <?php endif; endwhile; else: ?>
     <p><?php _e('Sorry, no posts matched your criteria','eprojet'); ?></p>
     <?php endif ?>
+
+    <?php comments_template(); // Charge le modéle de commentaire ?>
+    <?php if(function_exists('the_ratings')) { the_ratings(); }?>
+
+<?php get_footer(); // appel le fichier footer ?>
+
