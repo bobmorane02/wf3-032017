@@ -1,4 +1,0 @@
-// Placez vos paramètres dans ce fichier pour remplacer les paramètres par défaut et les paramètres utilisateur.
-{
-    "php.validate.executablePath":"C:\\xampp\\php\\php.exe"
-}
