@@ -15,7 +15,7 @@
         }
         table {
             border-collapse: collapse;
-            width: 100%;
+            border: none;
         }
 
         td,th {
@@ -29,8 +29,14 @@
             border-radius: 5px;
         }
 
-        label,select,input {
+        label,select,input,table {
             width: 100%;
+        }
+
+        #resultat {
+            background-color: #dadada;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
     </style>        
