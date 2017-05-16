@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        #demo {
+            border: 1px solid;
+            padding: 30px;            
+        }
+        
+        div h1 {
+            color: white;
+            padding: 20px;
+            background-color: darkred;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div id="titre">
+        <h1>Ancien titre</h1>
+    </div>
+<button type="button" id="action2">Changer titre</button>                   
+    <div>
+        <p id="demo">...</p>
+        <button type="button" id="action">Changer texte</button>
+    </div>
+    <script>
+        /*
+        Les status de la requete XMLHttpRequest :
+        0 => objet créé, demande non initialisée
+        1 => connexion au serveur établie
+        2 => demande reçue par le serveur
+        3 => traitement coté serveur
+        4 => demande terminée, le réponse est reçue
+
+        Les status HTTP
+        200 => ok
+        403 => forbidden
+        404 => Page not found
+        ...   
+        */
+
+
+        //  on récupère l'élément qui a l'id action pour mettre en place un événement exécution d'une fontion lors du clic
+        document.getElementById("action").addEventListener("click",changeText);
+        document.getElementById("action2").addEventListener("click",changeTitre);
+
+        function changeTitre () {
+            var xhttp = new XMLHttpRequest (); 
+            xhttp.onreadystatechange = function () {
+                console.log(xhttp.readyState);
+                console.log(xhttp.status);
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    console.log(xhttp.responseText);
+                document.getElementById("titre").innerHTML = xhttp.responseText;
+                }
+            }
+            xhttp.open("GET","ajax_info_html.txt",true);
+            xhttp.send();
+        }
+
+
+        function changeText () {
+            var xhttp = new XMLHttpRequest (); // instanciation de l'objet XMLHttpRequest
+
+            // mise en place d'un événement sur le changement d'état
+            xhttp.onreadystatechange = function () {
+                console.log(this.readyState);
+                console.log(this.status);
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    console.log(xhttp.responseText);
+                // lorsque le statut de la requête est à 4 et que le ststut http vaut 200
+                document.getElementById("demo").textContent = xhttp.responseText;
+                }
+            }
+            xhttp.open("GET","ajax_info_text.txt",true); // On prépare 1er arguments: la méthode, 2éme la page cible
+                                                         // 3eme mode asynchrone (true) ou synchrone (false) cette valeur
+                                                         // est à true par défaut.
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
