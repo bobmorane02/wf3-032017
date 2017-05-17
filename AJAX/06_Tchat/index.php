@@ -1,7 +1,10 @@
 <?php
 require_once("inc/init.inc.php");
 
-var_dump($_SESSION);
+if (!empty($_SESSION['pseudo'])){
+    // si l'utilisateur est défa connecté, on le redirige vers dialogue.php
+    header("location:dialogue.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">

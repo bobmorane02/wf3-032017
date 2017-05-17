@@ -1,5 +1,10 @@
 <?php
     require_once("inc/init.inc.php");
+    if (empty($_SESSION['pseudo'])){
+        // si l'utilisateur est défa connecté, on le redirige vers dialogue.php
+        header("location:index.php");
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +38,8 @@
 
         // ajax('message_tchat');
         // pour récupérer la liste des membres connectés
-        setInterval(ajax('liste_membre_connecte',1000));
+        ajax('liste_membre_connecte');
+        setInterval("ajax('liste_membre_connecte')",11000);
 
         // déclaration de la fonction ajax().
         function ajax(mode,arg = ''){
