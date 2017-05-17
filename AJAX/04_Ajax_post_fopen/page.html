@@ -38,7 +38,6 @@
 
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    console.log(xhttp.responseText);
                     var liste = JSON.parse(xhttp.responseText);
 
                     document.getElementById('liste_inscrit').innerHTML = liste.resultat;
