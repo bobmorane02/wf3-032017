@@ -42,13 +42,19 @@
     <script>
         // à placer de préférence dans footer.inc.php avec la ligne d'appel de jQuery.
         $(document).ready(function(){
+            setInterval(function(){
+                var fichier = $("#form").attr('action');
+                var parametre = 'mode=liste';
+                $.post(fichier,parametre,function(reponse){
+                    $("#liste").html(reponse.resultat);
+                },"json");
+                console.log(reponse.resultat);    
+            },3000);
+
             $("#form").on("submit",function(e){
                 e.preventDefault();
                 var url = $(this).attr('action'); // on récupere le fichier dans l'attribut action du form
                 var parametres = $(this).serialize() + '&mode=enregistrer';
-                console.log(url);
-                console.log(parametres);
-
                 $.post(url,parametres,function(reponse){
                     $("#enregistrer").html(reponse.resultat);
                 },"json");
