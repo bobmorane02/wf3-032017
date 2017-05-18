@@ -25,7 +25,7 @@
                     <label for="contenu">Contenu</label>
                     <textarea class="form-control" name="contenu" id="contenu"></textarea>
                 </div>
-                <button type="submit" class="button button-success col-sm-12">Enregistrer</button>
+                <button type="submit" class="btn btn-success col-sm-12">Enregistrer</button>
             </form>
         </div>
         <div class="col-sm-6 col-sm-offset-3">
@@ -39,6 +39,22 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        // à placer de préférence dans footer.inc.php avec la ligne d'appel de jQuery.
+        $(document).ready(function(){
+            $("#form").on("submit",function(e){
+                e.preventDefault();
+                var url = $(this).attr('action'); // on récupere le fichier dans l'attribut action du form
+                var parametres = $(this).serialize() + '&mode=enregistrer';
+                console.log(url);
+                console.log(parametres);
+
+                $.post(url,parametres,function(reponse){
+                    $("#enregistrer").html(reponse.resultat);
+                },"json");
+            });
+        });
+    </script>
 
 <?php
     require_once("inc/footer.inc.php");
