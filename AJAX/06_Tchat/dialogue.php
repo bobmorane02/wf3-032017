@@ -35,6 +35,7 @@
         <div id="postMessage"></div>
     </div>
     <script>
+        console.log('<?php echo $_SESSION['pseudo']; ?>');
         // faire en sorte que si l'utilisateur appuie sur "entrée" on enregistre le message
         document.addEventListener("keydown", function(e){
             if(e.keyCode == 13) {
