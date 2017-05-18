@@ -35,12 +35,48 @@
         <div id="postMessage"></div>
     </div>
     <script>
+        // faire en sorte que si l'utilisateur appuie sur "entrée" on enregistre le message
+        document.addEventListener("keydown", function(e){
+            if(e.keyCode == 13) {
+                e.preventDefault();
+                var messageValeur =  document.getElementById("message").value;
+                ajax("postMessage",messageValeur);
+                ajax("message_tchat");
+                document.getElementById("message").value = "";
+            }
+        });
 
-        // ajax('message_tchat');
+        // ajout de :) dans le message lors du clic sur le smiley
+        document.getElementById("smiley").addEventListener("click",function(e){
+            document.getElementById("message").value = document.getElementById("message").value+e.target.alt;
+            document.getElementById("message").focus(); // on remet le focus sur le message
+        });
         // pour récupérer la liste des membres connectés
         ajax('liste_membre_connecte');
-        setInterval("ajax('liste_membre_connecte')",11000);
 
+        setInterval("ajax('liste_membre_connecte')",3333);
+
+        // rafraichissement des messages
+        setInterval("ajax('message_tchat')",2000);
+
+        // Enregistrement du message via le bouton submit
+        document.getElementById('form').addEventListener("submit",function(e){
+            e.preventDefault(); // on bloque le rechargement de page lors de la soumission
+            // on récupére le message
+            var messageValeur =  document.getElementById("message").value;
+            // on exécute ajax() pour enregistrement
+            ajax("postMessage",messageValeur);
+            // on execute ajax() pour afficher les messages
+            ajax("message_tchat");
+            // on vide le champ
+            document.getElementById("message").value = "";
+        });
+
+        // FERMETURE DE LA PAGE PAR UTILISATEUR
+        // On le retire du fichier prenom.
+        window.onbeforeunload = function() {
+            ajax('liste_membre_connecte', '<?php echo $_SESSION['pseudo']; ?>');
+        }
         // déclaration de la fonction ajax().
         function ajax(mode,arg = ''){
 
@@ -51,7 +87,7 @@
                                 // l'élément html. Dans ce cas nous récupérons juste l'id de l'élément (mode = mode.id)
             }
 
-            console.log("mode actuel: "+mode); // nous affichons la tache en cours dans la console
+            // console.log("mode actuel: "+mode); // nous affichons la tache en cours dans la console
 
             var file = "ajax_dialogue.php";
             var parametres = "mode="+mode+"&arg="+arg
@@ -67,7 +103,7 @@
 
             xhttp.onreadystatechange = function() {
                 if (xhttp.readyState == 4 && xhttp.status == 200) {
-                        console.log(xhttp.responseText);
+                        // console.log(xhttp.responseText);
                     var obj = JSON.parse(xhttp.responseText);
 
                     document.getElementById(mode).innerHTML = obj.resultat;
