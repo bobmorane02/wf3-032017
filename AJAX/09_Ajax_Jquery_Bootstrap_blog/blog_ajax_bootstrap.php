@@ -15,15 +15,15 @@
             <form action="ajax.php" id="form">
                 <div class="form-group">
                     <label for="titre">Titre</label>
-                    <input type="text" class="form_control" name="titre" id="titre">
+                    <input type="text" class="form-control" name="titre" id="titre">
                 </div>
                 <div class="form-group">
                     <label for="auteur">Auteur</label>
-                    <input type="text" class="form_control" name="auteur" id="auteur">
+                    <input type="text" class="form-control" name="auteur" id="auteur">
                 </div>
                 <div class="form-group">
                     <label for="contenu">Contenu</label>
-                    <textarea class="form_control" name="contenu" id="contenu"></textarea>
+                    <textarea class="form-control" name="contenu" id="contenu"></textarea>
                 </div>
                 <button type="submit" class="button button-success col-sm-12">Enregistrer</button>
             </form>
