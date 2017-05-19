@@ -1,0 +1,7 @@
+http://rogerdudler.github.io/git-guide/index.fr.html
+
+overapi.com
+devdocs.io
+velocity.silverlakesoftware.com
+www.combiencoutemonapp.com
+www.synbioz.com/blog/git-adopter-un-modele-de-versionnement-efficace
