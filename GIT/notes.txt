@@ -5,3 +5,4 @@ devdocs.io
 velocity.silverlakesoftware.com
 www.combiencoutemonapp.com
 www.synbioz.com/blog/git-adopter-un-modele-de-versionnement-efficace
+bitbucket.org ----> équivalent à github
