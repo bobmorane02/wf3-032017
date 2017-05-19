@@ -27,7 +27,7 @@ if($mode == 'enregistrer'){
         $tab['resultat'] .= '<div class="panel-heading"><h2>'.$rep['titre'].'</h2></div>';
         $tab['resultat'] .= '<div class="panel-body">';
         $tab['resultat'] .= '<span class="small">Par : '.$rep['auteur'].' le '.$rep['date_fr'].'</span><hr>';
-        $contenu = substr($rep['contenu'],0,105).' ...<a href="#url/fiche_article.php?id_article='.$rep['id_article'].'">Lire la suite</a>';
+        $contenu = substr($rep['contenu'],0,30).' ...<a href="#url/fiche_article.php?id_article='.$rep['id_article'].'">Lire la suite</a>';
         $tab['resultat'] .= '<p>'.$contenu.'</p>';
         $tab['resultat'] .= '</div></div></div>';
         }
