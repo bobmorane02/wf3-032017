@@ -101,7 +101,7 @@ header ul>li:last-of-type:after {
     display: block;
 }
 
-#modale div {
+#modale>div {
     padding: 2rem;
     width: 30%;
    /* height: 30%;*/
@@ -127,4 +127,10 @@ header>section>ul>li>ul>li {
 
 #modale form {
     display: block;
+}
+
+#message {
+    font-size: 1rem;
+    color: red;
+    padding : 1rem;
 }

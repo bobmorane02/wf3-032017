@@ -1,6 +1,13 @@
 <?php
     require_once ('inc/init.inc.php');
-
+session_start();
+        if (empty($_SESSION['mode']) || !in_array($_SESSION['mode'],array(0,1)) || session_status() != PHP_SESSION_ACTIVE){
+            $menu = 'json/menu_visiteur.json';
+        } elseif ($_SESSION['mode'] == 0) {
+            $menu = 'json/menu_membre.json';
+        } else {
+            $menu = 'json/menu_admin.json';
+        }
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +29,7 @@
                 <li>
                     Espace Membre
                     <ul><?php
-                            $fichier = file_get_contents('json/menu.json');
+                            $fichier = file_get_contents($menu);
                             $json = json_decode($fichier,true);
                             foreach ($json as $valeur) {
                                 echo '<li id="'.strtolower($valeur).'">'.$valeur.'</li>';
