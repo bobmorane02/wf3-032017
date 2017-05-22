@@ -1,0 +1,130 @@
+/* ------------------------- initialisation ---------------------------*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+a{
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+main {
+    display: block;
+}
+
+header, main, footer {
+    width: 100%;
+}
+header>section , main>section, footer>section {
+    width: 1180px;
+    margin: auto;
+}
+
+aside {
+    float: left;
+}
+
+li {
+    list-style: none;
+}
+
+/* ------------------------- Fin initialisation ---------------------------*/
+
+header ul {
+    margin-left: 0;
+    text-align: left;
+}
+
+header>section>ul>li {
+    display: inline-block;
+}
+
+li>ul {
+    display: none;
+}
+
+
+aside:after {
+    content: "";
+    clear: both;
+}
+
+aside button {
+    display: block;
+}
+
+aside label {
+    font-style: italic;
+    display: block;
+}
+
+header>section>ul>li:last-of-type {
+    float: right;
+}
+
+header>section>ul>li:last-of-type:hover>ul {
+    display: block;
+}
+
+header ul>li:last-of-type:after {
+    content: "";
+    clear: both;    
+}
+
+#modale {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+#modale:target {
+    display: block;
+}
+
+#modale div {
+    padding: 2rem;
+    width: 30%;
+   /* height: 30%;*/
+}
+
+#modale input {
+    display: block;
+    width: 100%;
+}
+
+#modale>div:first-child {
+    position: relative;
+    background-color: white;
+    margin: auto;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+header>section>ul>li>ul>li {
+    cursor: pointer;
+}
+
+#modale form {
+    display: block;
+}
