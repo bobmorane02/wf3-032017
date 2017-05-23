@@ -1,6 +1,6 @@
 <?php
     require_once ('inc/init.inc.php');
-session_start();
+
         if (empty($_SESSION['mode']) || !in_array($_SESSION['mode'],array(0,1)) || session_status() != PHP_SESSION_ACTIVE){
             $menu = 'json/menu_visiteur.json';
         } elseif ($_SESSION['mode'] == 0) {
@@ -28,7 +28,7 @@ session_start();
                 <li><a href="#">Contact</a></li>
                 <li>
                     Espace Membre
-                    <ul><?php
+                    <ul id="menu"><?php
                             $fichier = file_get_contents($menu);
                             $json = json_decode($fichier,true);
                             foreach ($json as $valeur) {
@@ -77,8 +77,8 @@ session_start();
                     <input id="depart" type="date" name="depart">
                 </div>                   
             </aside>
-            <section></section>
         </section>
+        <section id="corp"></section>
     </main>
     <footer>
         <div id="modale"></div>
