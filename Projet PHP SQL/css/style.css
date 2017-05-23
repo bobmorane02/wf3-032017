@@ -86,9 +86,12 @@ header ul>li:last-of-type:after {
     clear: both;    
 }
 
+.hidden {
+    display: none;
+}
+
 #modale {
     position: fixed;
-    display: none;
     top: 0;
     left: 0;
     z-index: 10;

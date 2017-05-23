@@ -1,4 +1,4 @@
 {
-    "choix1": "Inscription",
-    "choix2": "Connexion"
+    "inscription": "Inscription",
+    "connexion": "Connexion"
 }
