@@ -28,10 +28,11 @@ main {
 }
 
 header, main, footer {
-    width: 100%;
+    width: 95rem;
+    margin: auto;
 }
 header>section , main>section, footer>section {
-    width: 1180px;
+    width: 100%;
     margin: auto;
 }
 
@@ -48,6 +49,7 @@ li {
 header ul {
     margin-left: 0;
     text-align: left;
+    positi
 }
 
 header>section>ul>li {
@@ -75,6 +77,7 @@ aside label {
 
 header>section>ul>li:last-of-type {
     float: right;
+    z-index: 10;
 }
 
 header>section>ul>li:last-of-type:hover>ul {
@@ -107,7 +110,6 @@ header ul>li:last-of-type:after {
 #modale>div {
     padding: 2rem;
     width: 30%;
-   /* height: 30%;*/
 }
 
 #modale input {
@@ -144,11 +146,22 @@ table {
 }
 
 th,td {
-    padding: 10px;
+    padding: 10px 5px;
     border: 1px solid black;
+    height: 38px;
+    font-size: 1.3rem;
 } 
 
 .menu_horizontal li {
     display: inline-block;
     padding: 5px;
+}
+
+fieldset {
+    width: 48%;
+    display: inline-block;
+}
+
+input,label,textarea {
+    display: block;
 }
