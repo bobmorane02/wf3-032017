@@ -137,3 +137,18 @@ header>section>ul>li>ul>li {
     color: red;
     padding : 1rem;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,td {
+    padding: 10px;
+    border: 1px solid black;
+} 
+
+.menu_horizontal li {
+    display: inline-block;
+    padding: 5px;
+}

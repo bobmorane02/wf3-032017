@@ -1,7 +1,7 @@
 <?php
+include_once ('inc/start.inc.php');
 include_once ('inc/haut.inc.php');
 ?>
-    <main>
         <section>
             <aside>
                 <div>
@@ -40,7 +40,6 @@ include_once ('inc/haut.inc.php');
             </aside>
         </section>
         <section id="corp"></section>
-    </main>
 <?php
 include_once('inc/bas.inc.php');
 ?>

@@ -1,3 +1,4 @@
+    </main>
     <footer>
         <div id="modale" class="hidden"></div>
     </footer>
