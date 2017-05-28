@@ -46,7 +46,7 @@ li {
 
 /* ------------------------- Fin initialisation ---------------------------*/
 
-header ul {
+/*header ul {
     margin-left: 0;
     text-align: left;
     
@@ -164,4 +164,20 @@ fieldset {
 
 input,label,textarea {
     display: block;
+}
+*/
+.btn-group-vertical,.form-group{
+    margin-top: 1rem;
+    width: 80%;
+    display: inline-block;
+}
+
+.input-group label {
+    width: 100%;
+    text-align: left;
+}
+
+div label {
+    width: 100%;
+    text-align: left;
 }
