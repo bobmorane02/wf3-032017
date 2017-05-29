@@ -34,10 +34,19 @@ include_once ('inc/haut.inc.php');
                 <p class="text-left"><strong>Période</strong></p>                
                 <div class="text-left"><em>Date d'arrivée</em></div>
                 <div class="input-group">                        
-                    <span class="input-group-addon">@</span>
+                    <span class="input-group-addon glyphicon glyphicon-calendar"></span>
                     <input type="text" class="form-control" name="date_arrivee">
                 </div>
             </div>
+            <div class="form-group">
+                <div class="text-left"><em>Date de départ</em></div>
+                <div class="input-group">                        
+                    <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+                    <input type="text" class="form-control" name="date_arrivee">
+                </div>
+            </div>
+            <p class="text-center" id="nb_resultat"></p>
+            
         </div>        
     </div> <!-- Fin du container-->
 

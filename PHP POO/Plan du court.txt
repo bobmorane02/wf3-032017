@@ -1,0 +1,18 @@
+Jour 1 :
+01 - class - objet - instance - visibilité
+02 - getter - setter - constructeur - this
+03 - manipulation - type - argument
+04 - constante - static - self
+05 - heritage
+
+Jour 2 :
+06 - surcharge - abstraction - finalisation - interface - trait
+07 - méthodes magiques
+08 - classes existantes
+09 - namespaces
+10 - autoload
+11 - PDO (déja fait en procédural)
+12 - architecture MVC (mini-framework)
+
+Jour 3 - 4
+13 - mini-framework (site_oo)

@@ -39,7 +39,7 @@
                                 $fichier = file_get_contents($menu);
                                 $json = json_decode($fichier,true);
                                 foreach ($json as $valeur){
-                                    echo '<li><a href="#">'.$valeur.'</a></li>';
+                                    echo '<li><a href="" data-toggle="modal" data-target="#modale">'.$valeur.'</a></li>';
                                 }
                             ?>
                         </ul>  
