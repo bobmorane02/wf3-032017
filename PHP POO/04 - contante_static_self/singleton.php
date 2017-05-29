@@ -26,3 +26,5 @@ $objet = Singleton::getInstance(); // $objet est le seul et unique objet de cett
 $objet2 = Singleton::getInstance();
 
 echo '<pre>';var_dump($objet);var_dump($objet2);echo '</pre>';
+
+// le Singleton est notamment utilisé pour la connexion à la base de données, cela est plus sûr ! 
