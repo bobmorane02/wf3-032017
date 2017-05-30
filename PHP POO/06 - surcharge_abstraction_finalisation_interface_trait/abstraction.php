@@ -41,5 +41,5 @@ echo $us->seConnecter().'<br>';
     - lorqu'on hérite d'une classe abstraite on doit OBLIGATOIREMENT redéfinir les méthodes abstraites.
 
     Le développeur maître, qui est au coeur de l'application, va obliger les autres développeurs à
-    redéfinir des méthodes. Ceci est une bonne prtique dans le cadre d'un travail collaboratif et hierarchisé.
+    redéfinir des méthodes. Ceci est une bonne pratique dans le cadre d'un travail collaboratif et hierarchisé.
 */

@@ -34,6 +34,6 @@ echo $site-> affichageMembre().'<br>';
 /*
     - Les trits permettent d'importer du code dans une classe.
     - Ils ont été inventés pour repousser l'héritage non multiple.
-    - Une classe peut impoter plusieurs traits.
-    - Un trait peut impoter un trait.
+    - Une classe peut importer plusieurs traits.
+    - Un trait peut importer un trait.
 */

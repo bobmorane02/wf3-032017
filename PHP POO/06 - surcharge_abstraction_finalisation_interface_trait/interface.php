@@ -36,6 +36,6 @@ class Avion implements Mouvement{
 
     - Une interface n'est pas instanciable.
     - Une classe peut implémenter plusieurs interfaces.
-    - Une classe peut à la fois extends une autre classe  et implémenter une ou plusieurs interfaces.
+    - Une classe peut à la fois extends une autre classe et implémenter une ou plusieurs interfaces.
     - Les méthodes d'une interface doivents forcement être public sinon elles ne peuvent être définies.
 */
