@@ -36,5 +36,5 @@ class Extension2 extends Appication2 {  // OK, Application2 n'est pas final donc
     - Une classe finale n'a que des méthodes finales puisque par définition elle ne pourra être héritée
       donc ses méthodes ne pourront être surchargées ou redéfinies
     - UNe méthode final peut être présente dans une classe "normale"
-    - Une méthode fianl ne peut être surchargée ou redéfinie.
+    - Une méthode final ne peut être surchargée ou redéfinie.
 */
