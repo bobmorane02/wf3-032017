@@ -7,7 +7,7 @@ require ('espace2.php');
 
 use Espace1;
 use Espace2;
-use PDO; // Lorsqu'on est dans un namesapce définie (General) et que l'on souhaite utiliser une
+use PDO; // Lorsqu'on est dans un namespace définie (General) et que l'on souhaite utiliser une
          // classe existante dans l'espace global '
 
 $c = new Espace1\A;
