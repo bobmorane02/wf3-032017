@@ -14,8 +14,8 @@ class Autoload
 
         require $path;
 
-        echo '<pre>Autoload : '.$nom_de_la_classe.'<br>';
-        echo '=> '.$path.'</pre><hr>';
+#        echo '<pre>Autoload : '.$nom_de_la_classe.'<br>';
+#        echo '=> '.$path.'</pre><hr>';
     }
 }
 #----------------------------------------
