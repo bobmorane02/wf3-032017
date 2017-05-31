@@ -1,5 +1,7 @@
 <?php
 
+namespace Entity;
+
 class Produit
 {
     private $id_produit,

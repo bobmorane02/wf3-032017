@@ -1,5 +1,7 @@
 <?php
 
+namespace Entity;
+
 class Membre
 {
     private $id_membre,

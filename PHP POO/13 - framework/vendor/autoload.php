@@ -16,6 +16,7 @@ class Autoload
 
         echo '<pre>Autoload : '.$nom_de_la_classe.'<br>';
         echo '=> '.$path.'</pre><hr>';
+    }
 }
 #----------------------------------------
 spl_autoload_register(array('Autoload','className')); 

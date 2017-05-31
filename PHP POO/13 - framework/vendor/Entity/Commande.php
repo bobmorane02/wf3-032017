@@ -1,5 +1,7 @@
 <?php
 
+namespace Entity;
+
 class Commande
 {
     private $id_commande,
