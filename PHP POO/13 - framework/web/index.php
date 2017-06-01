@@ -17,7 +17,7 @@
 
     $er =new \Manager\EntityRepository;
 
-   /* $produit = array(
+    /*$produit = array(
             "id_produit" => NULL,
             "reference" => "pull1",
             "categorie" => "vêtement",
@@ -31,5 +31,5 @@
             "stock" => "5"
     );
     $resultat = $er->register($produit);*/
-    $resultat =$er->findAll();
+    $resultat = $er->findAll();
     echo '<pre>';print_r($resultat);echo '</pre>';
