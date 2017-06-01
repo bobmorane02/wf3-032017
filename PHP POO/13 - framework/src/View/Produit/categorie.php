@@ -50,7 +50,7 @@
 
 					<?php foreach($categories as $categorie) : ?>
 
-						<a href="?categorie=<?= $categorie['categorie'] ?>" class="list-group-item"><?= $categorie['categorie'] ?></a>
+						<a href="?controller=produit&action=categorie&categorie=<?= $categorie['categorie'] ?>" class="list-group-item"><?= $categorie['categorie'] ?></a>
 						
 						
 					<?php endforeach;  ?>

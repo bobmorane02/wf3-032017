@@ -10,7 +10,14 @@ class ProduitController extends Controller
         $produits = $this->getRepository()->getAllProduits();
         $categories = $this->getRepository()->getAllCategories();
         # $this->render();
-        require(__DIR__.'/../View/Produit/boutique.php');
+
+        $params = array(
+            'produits'      => $produits,
+            'categories'    => $categories,
+            'title'         => 'Ma Boutique'
+        );
+
+        return $this->render('layout.html','boutique.html',$params);
     }
 
     public function affiche($id){

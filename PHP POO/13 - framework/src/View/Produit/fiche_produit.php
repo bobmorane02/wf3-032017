@@ -23,7 +23,7 @@
 					<span class="icon-bar"></span>
 				</button>
 				
-				<a class="navbar-brand" href="">Ma Boutique</a>
+				<a class="navbar-brand" href="?">Ma Boutique</a>
 				
 			</div>
 			
@@ -40,7 +40,7 @@
 	<!-- Container général DEBUT -->
 	<div class="container" style="min-height: 80vh;">
 		
-		<div class="modal fade" id="myModal" role="dialog"> 
+		<!--<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -54,7 +54,7 @@
 					
 				</div>	
 			</div>
-	   </div>
+	   </div> -->
 		
 		
 		
@@ -71,7 +71,7 @@
 	
 	
 			<div class="col-md-8">
-				<img class="img-responsive" src="<?=  $produit['photo']  ?>" alt="">
+				<img class="img-responsive" src="photo/<?=  $produit['photo']  ?>" alt="">
 			 </div>
 	
 			<div class="col-md-4">
@@ -97,9 +97,9 @@
 						<input type="hidden" name="id_produit" value="<?=  $produit['id_produit']  ?>">
 						
 						<select name="quantite" id="quantite" class="form-group-sm form-control-static">
-							for ($i = 1; $i <= $produit['stock'] && $i <= 5; $i++) {
-								<option>$i</option>
-							}	
+							<?php for ($i = 1; $i <= $produit['stock'] && $i <= 5; $i++):?> 
+								<option><?= $i ?></option>
+							<?php endfor ?>	
 						</select>
 					
 						<input type="submit" name="ajout_panier" value="ajouter au panier" class="btn" style="margin-left:10px">
@@ -110,7 +110,7 @@
 				<?php endif; ?>
 			
 
-				<br><p><a href="boutique.php?categorie=<?=  $produit['categorie']  ?>">Retour vers votre sélection</a></p>
+				<br><p><a href="">Retour vers votre sélection</a></p>
 			
 			</div>
 		</div>
@@ -120,10 +120,16 @@
 				<h3 class="page-header">Suggestions de produits</h3>
 			</div>
 			
-			<div class="col-sm-3">
-				<a href="fiche_produit.php?id_produit=<?=  $affichage['id_produit']  ?>"><img src="<?=  $affichage['photo']  ?>" style="width:100%"></a>
-				<h4><?=  $affichage['titre']  ?></h4>
-			</div>
+			
+			<?php foreach ($suggestions as $suggestion) : ?>
+				<div class="col-sm-2">
+					<div class="thumbnail">
+						<a href=""><img src="photo/<?= $suggestion['photo'] ?>" style="width:100%"></a>
+						<h5 style="text-align: center"><?=  $suggestion['titre']  ?></h5>
+					</div>
+				</div>
+			<?php endforeach ?>
+				
 			
 		</div>
 
