@@ -16,7 +16,8 @@ class EntityRepository
                                                         # dans laquelle je suis...
             # La commende get_called_class() : me retourne le nom de la classe dans laquelle je suis.
 
-        return 'produit'; #strtolower(str_replace(array('Repository\\','Repository'),'',get_called_class()));   
+        #return 'produit'; 
+        return strtolower(str_replace(array('Repository\\','Repository'),'',get_called_class()));   
     }
 
     # REQUETES GENERIQUES 

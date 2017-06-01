@@ -32,10 +32,13 @@ framework/
  │   │                                Si une entité à besoin d'une requête spécifique (exemple: jointure) dans ce cas les
  │   │                                requêtes seront codées directement dans le repository en question.  
  │   │   
- │   └─ Entity/
- │       ├─ Produit.php               Classes qui contiennent toutes les propriétés (private) de nos entités et getters et
- │       ├─ Membre.php                setters. POPO (Plain Old PHP Object).
- │       └─ Commande.php
- │
+ │   ├─ Entity/
+ │   │   ├─ Produit.php               Classes qui contiennent toutes les propriétés (private) de nos entités et getters et
+ │   │   ├─ Membre.php                setters. POPO (Plain Old PHP Object).
+ │   │   └─ Commande.php
+ │   │
+ │   └─ Repository/
+ │          ProduitRepository.php   : Ce fichier contiendra toutes les fonctions liées à l'entité produit, demandera à EntityRepository
+                                      de faire certaines requêtes. Et si l'entité a besoin de requêtes spécifiques, elles seront codéés ici.
  └─ web/
      └─ index.php                   : Clé d'entrée de notre application. (SILEX : index.php / SYMFONY : app.php)

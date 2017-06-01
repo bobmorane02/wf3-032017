@@ -13,8 +13,8 @@
     $resultat = $pdom->getPdo()->query('SELECT * FROM produit');
     $produits = $resultat->fetchAll(PDO::FETCH_ASSOC);
     echo '<pre>';print_r($produits);echo '</pre>';
-    */
 
+    TEST 3 : EntityRepository    
     $er =new \Manager\EntityRepository;
 
     /*$produit = array(
@@ -30,6 +30,18 @@
             "prix" => "49",
             "stock" => "5"
     );
-    $resultat = $er->register($produit);*/
+    $resultat = $er->register($produit);
     $resultat = $er->findAll();
-    echo '<pre>';print_r($resultat);echo '</pre>';
+
+    TEST 4 : ProduitRepository*/
+
+    $pr = new Repository\ProduitRepository;
+
+    $produits = $pr->getAllProduits();
+    #$produits = $pr->getProduitById(10);
+    #$produits = $pr->deleteProduitById(18);
+    #$produits = $pr->getAllProduitsByCategorie('informatique');
+    #$produits = $pr->getAllCategories();
+    #$produits = $pr->getAllSuggestions('informatique',15);
+
+    echo '<pre>';print_r($produits);echo '</pre>';
