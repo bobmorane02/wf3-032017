@@ -33,7 +33,7 @@
     $resultat = $er->register($produit);
     $resultat = $er->findAll();
 
-    TEST 4 : ProduitRepository*/
+    TEST 4 : ProduitRepository
 
     $pr = new Repository\ProduitRepository;
 
@@ -45,3 +45,10 @@
     #$produits = $pr->getAllSuggestions('informatique',15);
 
     echo '<pre>';print_r($produits);echo '</pre>';
+
+    TEST 5 : ProduitController*/
+
+    $pc = new \Controller\ProduitController;
+    $pc->afficheAll();
+    #$pc->affiche(15);
+    #$pc->categorie('informatique');*/
