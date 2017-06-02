@@ -1,10 +1,19 @@
 <?php
 namespace Controller;
 
+use Lib\ViewRenderer;
+use Model\User;
+
 class UserController {
     
     public function listAction(){
-        echo 'user:list';
+        $users = User::findAll();
+        
+        $viewRenderer = ViewRenderer::getInstance();
+        $viewRenderer->render('index.view.php',['users'=>$users]);
     }
-            
+    
+    public function editAction(){
+        echo 'user:edit';
+    }            
 }
