@@ -2,6 +2,7 @@
     session_start();    # On ouvre une nouvelle session en premier lieu.
     require_once(__DIR__.'/../vendor/autoload.php');
 
+    /*
     if(isset($_GET['controller']) && !empty($_GET['controller']) && isset($_GET['action']) && !empty($_GET['action'])){
         $controller = 'Controller\\'.ucfirst($_GET['controller']).'Controller';
         if(file_exists(__DIR__.'/../src/Controller/'.ucfirst($_GET['controller']).'Controller.php')){
@@ -23,6 +24,12 @@
         $a = new \Controller\ProduitController;
         $a->afficheAll();
     }
+
+    Les deux lignes suivantes remplaces le code procédural précédant.
+    */
+    
+    $app = new Manager\Application; 
+    $app -> run(); 
 
     /* TEST 1 : Entity Produit
     $produit = new Entity\Produit;

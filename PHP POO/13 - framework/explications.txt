@@ -31,7 +31,10 @@ framework/
  │   │                                Concrètement il ne doit pas y avoir de requête ailleurs que dans un repository.
  │   │                                Si une entité à besoin d'une requête spécifique (exemple: jointure) dans ce cas les
  │   │                                requêtes seront codées directement dans le repository en question.  
- │   │   
+
+ │   │      Application.php         : Lancement de notre application. Cette classe récupére les infos dans l'URL pour instancier 
+                                      le bon controller et lancer la bonne action (méthode).
+
  │   ├─ Entity/
  │   │   ├─ Produit.php               Classes qui contiennent toutes les propriétés (private) de nos entités et getters et
  │   │   ├─ Membre.php                setters. POPO (Plain Old PHP Object).
