@@ -1,0 +1,17 @@
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Adresse</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            {% for prop in user %}
+                <td>{{ prop }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    
+</table>
