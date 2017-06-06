@@ -5,8 +5,8 @@ use Lib\Router;
 use Lib\viewRenderer;
 
 $viewRenderer = viewRenderer::getInstance();
-$viewRenderer->setViewDir('../view/')
-             ->setLayoutPath('../view/layout.view.php');
+$viewRenderer->setViewDir('../View/')
+             ->setLayoutPath('../View/layout.view.php');
 
 $router = Router::getInstance();
 $router->setPrefix('/MVC/web/')
