@@ -1,7 +1,6 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-
 <table>
     <tr>
         <th>Id</th>
@@ -10,13 +9,10 @@
         <th>Email</th>
         <th>Adresse</th>
     </tr>
-    {% for user in users %}
-        <tr>
-            {% for prop in user %}
-                <td>{{ prop }}</td>
-            {% endfor %}
-        </tr>
-    {% endfor %}
-    
+    <tr>
+        {% for prop in user %}
+            <td>{{ prop }}</td>
+        {% endfor %}
+    </tr>   
 </table>
 {% endblock %}
