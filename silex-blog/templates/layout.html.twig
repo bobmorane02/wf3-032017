@@ -8,12 +8,33 @@
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <a class="navbar-brand">Menu Admin</a>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{{ path('admin_categories') }}">Rubriques</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_articles') }}">Articles</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <nav class="navbar navbar-default">
             <div class="container">
                 <a class="navbar-brand" href="{{ path('homepage') }}">Blog</a>
             </div>
         </nav>
             <div class="container">
+                {% for label, flashes in global.session.flashbag.all %}
+                    {% for flash in flashes %}
+                        {% if label == 'error' %}
+                            {% set label = 'danger' %}
+                        {% endif %}
+                        <div class="alert alert-{{ label }}">{{ flash }}</div>
+                    {% endfor %}
+                {% endfor %}
                 {% block content %}{% endblock %}
             </div>
         {% block javascripts %}
