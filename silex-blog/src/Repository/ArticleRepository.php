@@ -2,7 +2,6 @@
 
 namespace Repository;
 
-use Doctrine\DBAL\Connection;
 use Entity\Article;
 
 /**
@@ -10,18 +9,9 @@ use Entity\Article;
  *
  * @author Etudiant
  */
-class ArticleRepository {
+class ArticleRepository extends RepositoryAbstract{
     
-     /**
-     *
-     * @var Connection
-     */
-    private $db;
-    
-    public function __construct(Connection $db){
-        $this->db =$db;
-    }
-
+   
     /**
      * 
      * @return Array of Category
@@ -55,7 +45,7 @@ class ArticleRepository {
         return $article;
     }
 
-    public function insert(Article $carticle){
+    public function insert(Article $article){
         $this->db->insert( 'article', 
                            ['title' => $article->getTitle(),
                             'short_content' => $article->getShort_content(),

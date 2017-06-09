@@ -3,6 +3,7 @@
 namespace Controller\Admin;
 
 use Controller\ControllerAbstract;
+use Entity\Article;
 
 /**
  * Description of ArticleController
@@ -25,15 +26,17 @@ class ArticleController extends ControllerAbstract{
         if (!is_null($id)){
             $article = $this->app['article.repository']->find($id);
         } else {
-            $article = new article();
+            $article = new Article();
         }
         
         if (!empty($_POST)){
-            $article->setName($_POST['name']);
+            $article->setTitle($_POST['title']);
+            $article->setShort_Content($_POST['short_content']);
+            $article->setContent($_POST['content']);
             
             $this->app['article.repository']->save($article);
             $this->addFlashMessage('La rubrique est enregistrée');
-            return $this->redirectRoute('admin_articlees');
+            return $this->redirectRoute('admin_articles');
         }
         
         return $this->render('admin/article/edit.html.twig',

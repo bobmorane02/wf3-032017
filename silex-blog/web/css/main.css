@@ -5,3 +5,29 @@
 .glyphicon {
     padding-right: 5px;
 }
+
+.afflist th:last-of-type{
+    width: 20%;
+}
+
+/*.afflist th:nth-of-type(4){
+    width: 50%;
+}*/
+
+.table .btn {
+    width: 10rem;
+}
+
+textarea {
+    resize: none;
+}
+
+textarea:nth-of-type(2) {
+    max-width: 100%;
+    height: 30rem;
+    max-height: 30rem;
+}
+
+form.col-md-5 {
+    padding-left: 0;
+}

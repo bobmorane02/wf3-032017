@@ -3,9 +3,10 @@
 {% block title 'Admin rubriques' %}
     
 {% block content %}
-    <h2>Edition rubrique</h2>
-    
-    <form method="post">
+    <div class="jumbotron">
+        <h2>Edition rubrique</h2>
+    </div>
+    <form class="col-md-5" method="post">
         <div class="form-group">
             <label>Nom</label>
             <input type="text" name="name" value="{{ category.name }}" class="form-control">

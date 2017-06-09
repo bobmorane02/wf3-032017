@@ -64,7 +64,10 @@ $app->match('admin/articles/edition/{id}','admin.article.controller:editAction')
     ->bind('admin_article_edit')    
 ;
 
-$app->match('admin/articles/suppression/{id}','admin.article.controller:deleteAction')
+$app->match('admin/articles/suppression/{id}',
+            'admin.article.controller:deleteAction')
+    # si la valeur est précisée, ce doit être un nombre, sinon page 404
+    ->assert('id','\d+')
     ->bind('admin_article_delete')    
 ;
 

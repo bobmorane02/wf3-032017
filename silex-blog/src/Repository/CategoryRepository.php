@@ -2,20 +2,9 @@
 
 namespace Repository;
 
-use Doctrine\DBAL\Connection;
 use Entity\Category;
 
-class CategoryRepository {
-    
-    /**
-     *
-     * @var Connection
-     */
-    private $db;
-    
-    public function __construct(Connection $db){
-        $this->db =$db;
-    }
+class CategoryRepository extends RepositoryAbstract{
     
     /**
      * 
