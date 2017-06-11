@@ -24,6 +24,4 @@ while ($reponse = $rep->fetch(PDO::FETCH_ASSOC)){
         }
         $maj = $db->query("UPDATE ville SET longitude = ".$coord->lng.",latitude = ".$coord->lat.", departement ='".$departement."' WHERE id_ville =".$reponse['id_ville']);
     }
-#    $url_address = utf8_encode($address);
-#    echo '<pre>';print_r($resultat);echo '</pre>';
 }
