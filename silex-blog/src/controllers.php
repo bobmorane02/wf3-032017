@@ -41,8 +41,16 @@ $app['user.controller'] = function() use ($app){
 }
 ;
 
-$app->match('utilisateur/instricption','user.controller:registerAction')
+$app->match('utilisateur/inscription','user.controller:registerAction')
     ->bind('register')
+;
+
+$app->match('utilisateur/connexion','user.controller:loginAction')
+    ->bind('login')
+;
+
+$app->get('utilisateur/deconnexion','user.controller:logoutAction')
+    ->bind('logout')
 ;
 
 # Admin -------------------------------------------------------
@@ -56,34 +64,47 @@ $app['admin.article.controller'] = function() use ($app){
 }
 ;
 
-$app->get('admin/rubriques','admin.category.controller:listAction')
+# Créer un sous ensemble de routes
+$admin = $app['controllers_factory'];
+
+# toutes les routes du sous-ensemble commenceront par /admin
+$app->mount('/admin',$admin);
+
+
+$admin->before(function() use ($app) {          # permet de faire un traitement avant pour toutes les routes du sous-ensemble
+        if(!$app['user.manager']->isAdmin()){   # l'accès à la route
+            $app->abort(403,'Accès refusé');    # si admin n'est pas conncté
+        }                                       # HTTP 403 Forbideen
+});
+
+$admin->get('rubriques','admin.category.controller:listAction')
     ->bind('admin_categories')    
 ;
 
-$app->get('admin/articles','admin.article.controller:listAction')
+$admin->get('articles','admin.article.controller:listAction')
     ->bind('admin_articles')    
 ;
 
 # match permet d'accepter une route en méthode GET et POST contrairement à
 # get qui n'accepte que la méthode GET
 
-$app->match('admin/rubriques/edition/{id}','admin.category.controller:editAction')
+$admin->match('rubriques/edition/{id}','admin.category.controller:editAction')
     # valeur par défaut pour le paramétre de la route
     ->value('id',null)
     ->bind('admin_category_edit')    
 ;
 
-$app->match('admin/rubriques/suppression/{id}','admin.category.controller:deleteAction')
+$admin->match('rubriques/suppression/{id}','admin.category.controller:deleteAction')
     ->bind('admin_category_delete')    
 ;
 
-$app->match('admin/articles/edition/{id}','admin.article.controller:editAction')
+$admin->match('articles/edition/{id}','admin.article.controller:editAction')
     # valeur par défaut pour le paramétre de la route
     ->value('id',null)
     ->bind('admin_article_edit')    
 ;
 
-$app->match('admin/articles/suppression/{id}',
+$admin->match('articles/suppression/{id}',
             'admin.article.controller:deleteAction')
     # si la valeur est précisée, ce doit être un nombre, sinon page 404
     ->assert('id','\d+')

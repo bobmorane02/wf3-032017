@@ -101,6 +101,22 @@ class User {
 
     /**
      * 
+     * @return string
+     */
+    public function getFullname(){
+        return $this->firstname.' '.$this->lastname;
+    }
+    
+    /**
+     * 
+     * @return bool
+     */
+    public function isAdmin(){
+        return $this->role == 'admin';
+    }
+    
+    /**
+     * 
      * @param int $id
      * @return $this
      */

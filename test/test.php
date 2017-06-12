@@ -2,10 +2,11 @@
 
 set_time_limit(0);
 
-$db = new PDO('mysql:host=localhost;dbname=temp','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+$db = new PDO('mysql:host=localhost;dbname=test','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 $geocoder = "http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false";
 
-$rep = $db->query("SELECT * FROM ville WHERE id_ville BETWEEN 2520 AND 3000");
+#$rep = $db->query("SELECT * FROM ville WHERE id_ville = 4724 AND 4700");
+$rep = $db->query("SELECT * FROM ville WHERE code_postal LIKE '14%' AND longitude IS NULL");
 
 
 while ($reponse = $rep->fetch(PDO::FETCH_ASSOC)){

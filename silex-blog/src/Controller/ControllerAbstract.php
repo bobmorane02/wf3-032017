@@ -5,6 +5,8 @@ namespace Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Validator\RecursiveValidator;
 use Twig_Environment;
 
 class ControllerAbstract {
@@ -26,10 +28,17 @@ class ControllerAbstract {
      */
     protected $twig;
     
+    /**
+     *
+     * @var RecursiveValidator
+     */
+    protected $validator;
+    
     public function __construct(Application $app){
         $this->app = $app;
         $this->twig = $app['twig'];
         $this->session = $app['session'];
+        $this->validator = $app['validator'];
     }
     
     /**
@@ -59,5 +68,19 @@ class ControllerAbstract {
     public function redirectRoute($routeName, array $parameters = []){
         return $this->app->redirect(
                 $this->app['url_generator']->generate($routeName,$parameters));
+    }
+    
+    /**
+     * 
+     * @param mixed $value
+     * @param Constraint $constraint
+     * @return bool
+     */
+    public function validate($value, Constraint $constraint ){
+        # retourne un tableau contenant les erreurs
+        $errors = $this->validator->validate($value, $constraint);
+        
+        # s'il est vide c'est que la valeur est valide
+        return $errors->count() == 0;
     }
 }
