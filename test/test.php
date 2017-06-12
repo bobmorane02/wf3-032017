@@ -5,7 +5,7 @@ set_time_limit(0);
 $db = new PDO('mysql:host=localhost;dbname=temp','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 $geocoder = "http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false";
 
-$rep = $db->query("SELECT * FROM ville WHERE id_ville BETWEEN 2485 AND 2500");
+$rep = $db->query("SELECT * FROM ville WHERE id_ville BETWEEN 2520 AND 3000");
 
 
 while ($reponse = $rep->fetch(PDO::FETCH_ASSOC)){
@@ -25,3 +25,5 @@ while ($reponse = $rep->fetch(PDO::FETCH_ASSOC)){
         $maj = $db->query("UPDATE ville SET longitude = ".$coord->lng.",latitude = ".$coord->lat.", departement ='".$departement."' WHERE id_ville =".$reponse['id_ville']);
     }
 }
+
+echo "FINI !!!";
