@@ -3,6 +3,7 @@
 namespace Repository;
 
 use Entity\Article;
+use Entity\Category;
 
 /**
  * Description of ArrticleRepository
@@ -17,15 +18,19 @@ class ArticleRepository extends RepositoryAbstract{
      * @return Array of Category
      */
     public function findAll(){
-        $dbArticles = $this->db->fetchAll('SELECT * FROM article');
+                                                # peut étre remplacé par :
+        $query = 'SELECT a.*,c.name '           # $query =<<<EOS
+                . 'FROM article a '             # SELECT a.*, c.name  
+                . 'JOIN category c '            # FROM article a
+                . 'ON a.category_id = c.id';    # JOIN category c
+                                                # ON a.category_id = c.id;
+                                                # EOS;
+        
+        $dbArticles = $this->db->fetchAll($query);
         $articles = [];
         
         foreach ($dbArticles as $dbArticle) {
-            $article = new Article();
-            $article->setId($dbArticle['id'])
-                    ->setTitle($dbArticle['title'])
-                    ->setShort_content($dbArticle['short_content'])
-                    ->setContent($dbArticle['content']);                         
+            $article = $this->buildArticleFromArray($dbArticle);
             $articles[] = $article;
         }
         
@@ -33,16 +38,44 @@ class ArticleRepository extends RepositoryAbstract{
     }
     
     public function find ($id){
-        $dbArticles = $this->db->fetchAssoc(
-                'SELECT * FROM article WHERE id = :id',
+        
+        $query = 'SELECT a.*,c.name '
+                . 'FROM article a '
+                . 'JOIN category c '
+                . 'ON a.category_id = c.id '
+                . 'WHERE a.id = :id';
+        
+        $dbArticle = $this->db->fetchAssoc(
+                $query,
                 [':id' => $id]
                 );
-        $article = new Article();
-        $article->setId($dbArticles['id'])
-                ->setTitle($dbArticles['title'])
-                ->setShort_content($dbArticles['short_content'])
-                ->setContent($dbArticles['content']);
+        
+        $article = $this->buildArticleFromArray($dbArticle);
+        
         return $article;
+    }
+    
+    public function findByCategory($category){
+        $query = 'SELECT a.*,c.name '
+                . 'FROM article a '
+                . 'JOIN category c '
+                . 'ON a.category_id = c.id '
+                . 'WHERE c.id = :id';
+        
+        $dbArticles = $this->db->fetchAssoc(
+                $query,
+                [':id' => $category->getId()]
+                );
+        
+        
+        $article = [];
+        
+        foreach ($dbArticles as $dbArticle){
+            $article = $this->buildArticleFromArray($dbArticles);
+            $articles[] = $article;
+        }
+        
+        return $articles;
     }
 
     public function insert(Article $article){
@@ -50,6 +83,7 @@ class ArticleRepository extends RepositoryAbstract{
                            ['title' => $article->getTitle(),
                             'short_content' => $article->getShort_content(),
                             'content' => $article->getContent(),
+                            'category_id' => $article->getCategoryId(),
                            ]);
     }
     
@@ -58,6 +92,7 @@ class ArticleRepository extends RepositoryAbstract{
                            ['title' => $article->getTitle(),
                             'short_content' => $article->getShort_content(),
                             'content' => $article->getContent(),
+                            'category_id' => $article->getCategoryId(),   
                            ],
                            ['id' => $article->getId()]
                 );
@@ -78,5 +113,25 @@ class ArticleRepository extends RepositoryAbstract{
                 ['id'=> $article->getId()]
                 );
     }
-    
+ 
+    /**
+     * 
+     * @param array $dbArticle
+     * @return Article
+     */
+    private function buildArticleFromArray(array $dbArticle){
+        
+            $category = new Category;
+            $category->setId($dbArticle['category_id'])
+                     ->setName($dbArticle['name']);
+            
+            $article = new Article();
+            $article->setId($dbArticle['id'])
+                    ->setTitle($dbArticle['title'])
+                    ->setShort_content($dbArticle['short_content'])
+                    ->setContent($dbArticle['content'])
+                    ->setCategory($category);
+            
+            return $article;
+    }
 }

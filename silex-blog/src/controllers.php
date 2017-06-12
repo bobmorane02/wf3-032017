@@ -27,6 +27,11 @@ $app->get('rubriques','index.controller:categoriesAction')
     ->bind('categories')
 ;
 
+$app->get('rubriques/{id}','index.controller:categorieAction')
+    ->assert('id','\d+')
+    ->bind('category')
+;
+
 $app['admin.category.controller'] = function() use ($app){
     return new CategoryController($app);
 }

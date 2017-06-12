@@ -34,6 +34,12 @@ class Article {
     private $short_content;
     
     /**
+     *
+     * @var Category
+     */
+    private $category;
+    
+    /**
      * 
      * @return int
      */
@@ -112,4 +118,47 @@ class Article {
         $this->short_content = $short_content;
         return $this;
     }
+    
+    /**
+     * 
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * 
+     * @param Category $category
+     * @return $this
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * 
+     * @return int|null
+     */
+    public function getCategoryId(){
+        if (!is_null($this->category)){
+            return $this->category->getId();
+        }
+        return null;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getCategoryName(){
+        if (!is_null($this->category)){
+            return $this->category->getName();
+        }
+        return '';
+    }
 }
+
