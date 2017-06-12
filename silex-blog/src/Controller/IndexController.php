@@ -17,7 +17,7 @@ class IndexController extends ControllerAbstract {
         
         $articles = $this->app['article.repository']->findByCategory($category);
         
-        return $this->render('categories.html.twig', 
+        return $this->render('category.html.twig', 
                 [
                     'articles' => $articles,
                     'category' => $category,

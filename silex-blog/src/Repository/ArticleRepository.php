@@ -62,16 +62,15 @@ class ArticleRepository extends RepositoryAbstract{
                 . 'ON a.category_id = c.id '
                 . 'WHERE c.id = :id';
         
-        $dbArticles = $this->db->fetchAssoc(
+        $dbArticles = $this->db->fetchAll(
                 $query,
                 [':id' => $category->getId()]
                 );
         
-        
-        $article = [];
+        $articles = [];
         
         foreach ($dbArticles as $dbArticle){
-            $article = $this->buildArticleFromArray($dbArticles);
+            $article = $this->buildArticleFromArray($dbArticle);
             $articles[] = $article;
         }
         
@@ -120,7 +119,6 @@ class ArticleRepository extends RepositoryAbstract{
      * @return Article
      */
     private function buildArticleFromArray(array $dbArticle){
-        
             $category = new Category;
             $category->setId($dbArticle['category_id'])
                      ->setName($dbArticle['name']);
