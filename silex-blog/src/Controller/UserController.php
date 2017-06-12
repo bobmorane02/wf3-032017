@@ -16,7 +16,22 @@ class UserController extends ControllerAbstract{
         if (!empty($_POST)){
             
             // Validation 
+            if (!$this->validate($_POST['lastname'], new Assert\NotBlank())){
+                $errors['lasname'] = 'Le nom est obligatoire';
+            }
+            if (!$this->validate($_POST['firstname'], new Assert\NotBlank())){
+                $errors['firstname'] = 'Le prénom est obligatoire';
+            }
+            if (!$this->validate($_POST['email'], new Assert\NotBlank())){
+                $errors['email'] = "L'email est obligatoire";
+            }
+            if (!$this->validate($_POST['password'], new Assert\NotBlank())){
+                $errors['password'] = 'Le mot de passe est obligatoire';
+            } elseif (!$this->validate($_POST['email'],new Assert\Email())){
+                $errors['email'] = "L'email n'est pas valide";
+            }
             
+            if(empty($errors)){
             $user->setLastname($_POST['lastname'])
                  ->setFirstname($_POST['firstname'])
                  ->setEmail($_POST['email'])
@@ -27,6 +42,12 @@ class UserController extends ControllerAbstract{
             $this->app['user.manager']->login($user);
             
             return $this->redirectRoute('homepage');
+            } else {
+                $msg = '<strong>Le formulaire contient des erreurs</strong>';
+                $msg .= '<br>-'.implode('<br>-',$errors);
+                
+                $this->addFlashMessage($msg,'error');
+            }
         }
         
         return $this->render('register.html.twig');
