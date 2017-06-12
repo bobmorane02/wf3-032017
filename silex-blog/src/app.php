@@ -1,7 +1,9 @@
 <?php
 
-use Repository\CategoryRepository;
 use Repository\ArticleRepository;
+use Repository\CategoryRepository;
+use Repository\UserRepository;
+use Service\UserManager;
 use Silex\Application;
 use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
@@ -42,6 +44,14 @@ $app['category.repository'] = function () use ($app){
 
 $app['article.repository'] = function () use ($app){
     return new ArticleRepository($app['db']);
+};
+
+$app['user.repository'] = function () use ($app){
+    return new UserRepository($app['db']);
+};
+
+$app['user.manager'] = function () use ($app){
+    return new UserManager();
 };
 
 return $app;

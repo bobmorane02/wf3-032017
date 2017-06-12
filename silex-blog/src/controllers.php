@@ -1,13 +1,15 @@
 <?php
 
-use Controller\Admin\CategoryController;
 use Controller\Admin\ArticleController;
+use Controller\Admin\CategoryController;
 use Controller\IndexController;
+use Controller\UserController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
+# Front --------------------------------------------------------
 $app->get('/', function () use ($app) {
     return $app['twig']->render('index.html.twig', array());
 })
@@ -32,6 +34,18 @@ $app->get('rubriques/{id}','index.controller:categorieAction')
     ->bind('category')
 ;
 
+#Utilisateurs -------------------------------------------------
+
+$app['user.controller'] = function() use ($app){
+    return new UserController($app);
+}
+;
+
+$app->match('utilisateur/instricption','user.controller:registerAction')
+    ->bind('register')
+;
+
+# Admin -------------------------------------------------------
 $app['admin.category.controller'] = function() use ($app){
     return new CategoryController($app);
 }

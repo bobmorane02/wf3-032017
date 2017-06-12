@@ -25,6 +25,11 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ path('homepage') }}">Blog</a>
                 {{ render(url('categories')) }}
+                <ul class="nav navbar-nav navbar-right" >
+                    <li>
+                        <a href="{{ path('register') }}">Créer un compte</a>
+                    </li>
+                </ul>
             </div>
         </nav>
             <div class="container">
