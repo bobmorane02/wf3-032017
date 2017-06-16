@@ -1,5 +1,5 @@
 <?php
-    require ('connexion.php');
+    require_once ('connexion.php');
 
     $req_insert = "INSERT INTO users (nom,prenom,email,password,type) VALUES (:nom,:prenom,:email,:password,:type)";
     $req_email = "SELECT * FROM users WHERE email = :email";
@@ -8,7 +8,7 @@
     $ins = array('nom' => '', 'prenom' => '', 'email' => '', 'password' => '', 'type' => '');
     $ok = FALSE;
 
-    if (!empty($_POST)) {
+    if (!empty($_POST) && isset($_POST['inscription'])) {
 
         $ins = $_POST['inscription'];
 
