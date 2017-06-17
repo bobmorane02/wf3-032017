@@ -5,8 +5,8 @@ set_time_limit(0);
 $db = new PDO('mysql:host=localhost;dbname=temp','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 $geocoder = "http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false";
 
-$rep = $db->query("SELECT * FROM ville WHERE id_ville BETWEEN 8501 AND 8510");
-#$rep = $db->query("SELECT * FROM ville WHERE code_postal LIKE '80%'");
+$rep = $db->query("SELECT * FROM ville WHERE id_ville BETWEEN 9501 AND 10000");
+#$rep = $db->query("SELECT * FROM ville WHERE code_postal LIKE '76%'");
 
 while ($reponse = $rep->fetch(PDO::FETCH_ASSOC)){
     if (!$reponse['longitude'] || !$reponse['latitude'] || !$reponse['departement']){
